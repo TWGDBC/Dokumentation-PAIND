@@ -22,6 +22,7 @@
 \usepackage{pdfpages}
 \usepackage{pgfgantt}
 \usepackage[bottom=48mm,left=25mm,right=25mm]{geometry}
+\usepackage{todonotes}
 
 %Unterstützung von Umlauten und anderen Sonderzeichen (UTF-8)
 \usepackage{lmodern}
@@ -109,21 +110,24 @@
 % Hier soll das Ziel des Projektes in eigenen Worten beschrieben werden.
 % Dabei sollte auf die Bedeutung und den Nutzen des Projektergebnisses eingegangen werden.
 
-Ziel des Projektes ist es die Realisierung eines 3D-Laser Moduls. In erster Priorität soll damit 3D Mapping in Echtzeit betrieben werden können. Zweite Priorität ist die Hinderniserkennung in Frontrichtung. Dazu muss in Front Richtung eine detaillierte Punktwolke ermittelt werden können. Das Modul soll einerseits auf dem Packbot nutzbar, sowie auch eigenständig einsetzbar sein.
+Ziel des Projektes ist es die Realisierung eines 3D-Laser Moduls. In erster Priorität soll damit 3D Mapping in Echtzeit betrieben werden können. Das Modul wird mit dem bestehenden 3D Laserscanner von Velodyne des Typs VLP-16 realisiert. Dabei soll eine möglichst detaillierte Punktwolke erstellt werden, welche visualisiert werden kann. Zweite Priorität ist die Hinderniserkennung in Frontrichtung. Dazu muss in Frontrichtung eine detaillierte Punktwolke ermittelt werden können. Das Modul soll einerseits auf dem Packbot nutzbar, sowie auch eigenständig einsetzbar sein. 
 
 \section{Anforderungen}
 % Hier sollen die Anforderungen an das Projektergebnis beschrieben werden. 
 % Es soll zwischen unbedingt erforderlichen Muss-Anforderungen und optionalen Kann-Anforderungen unterschieden werden.
-In nächsten Abschnitt werden die Anforderungen beschrieben. Dabei werden diese in drei Kriterien unterteilt, welche mit folgenden Kürzeln definiert sind:
+In nächsten Abschnitt werden die verschiedenen Anforderungen rund um die Projektarbeit PAIND beschrieben. Diese sind einerseits in sechs Kriterien unterteilt, je nach Anforderungsgeber und Anforderungsform. Diese Kriterien sind nachfolgend mit Kürzel erläutert: 
 
 \begin{itemize}
 	% Hier soll eine vollständige und nachprüfbare Beschreibung einer Anforderung an das Projektergebnis beschrieben werden.
 	\item F: Festanforderung 
 	\item M: Mindestanforderung
 	\item W: Wunschanforderung
+	\item E: Eigene Anforderung 
+	\item D: Dozentenanforderung
+	\item P: Modulanforderung
 \end{itemize}
 
-Neben den Kriterien wurden die Anforderungen zusätzlich in Themengebiete unterteilt, welche in den folgenden Unterkapiteln erläutert werden.
+Neben den Kriterien wurden die Anforderungen zusätzlich in Themengebiete unterteilt, welche in den folgenden Unterkapiteln ersichtlich sind.
 
 \subsection{Allgemeine Anforderungen}
 
@@ -145,27 +149,24 @@ Neben den Kriterien wurden die Anforderungen zusätzlich in Themengebiete unterte
 
 \includegraphics[width=1\textwidth]{bilder/Pflichtenheft_5.PNG}
 
-
-
 \section{Projektphasen}
 
-Nachfolgend werden die einzelnen Projektphasen erläutert. Sie geben Auskunft, wielange man mittels den angegebenen Arbeitsmitteln an der Phase tätig sein soll und welche Ergebnisse daraus entspringen sollten. 
+Nachfolgend werden die einzelnen Projektphasen erläutert. Sie geben Auskunft, wielange man mittels den angegebenen Arbeitsmitteln an der Phase tätig sein soll und welche Ergebnisse daraus entspringen sollten. Dazu wird ein entsprechende Aufwandseinschätzung mitgeliefert, welchen den Umfang der Phase definiert. Die detaillierte Aufwandsabrechnung wird im detaillierten Projektplan dargelegt. 
 
 \subsection{Initialisierung \& Projektplanung}
-\label{sec:init}
-Dieses Abschnitt umfasst die administrativen Aufgaben, welche für die Projektplanung und Projektdurchführung nötig sind. Sie sollen möglichst als Vorbereitung dienen.\\
-
+\label{sec:init} 
+Dieses Abschnitt umfasst die administrativen Aufgaben, welche für die Projektplanung und Projektdurchführung nötig sind. Sie sollen möglichst als Vorbereitung dienen, damit mit den Ergebnissen die Projektdurchführung  erleichtert wird.\\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[12]{h} \\\hline
 Personen & Daniel Zimmermann \\\hline
-Arbeitsmittel & Lastenheft, Vorlage, Literatur \\\hline
+Arbeitsmittel & Aufgabenstellung, Besprechungen, Vorlagen, Literatur \\\hline
 Ergebnisse & Pflichtenheft, Backup-Möglichkeit, Detaillierter Projektplan, Grobplanung, Meilensteine  Anforderungsliste, Risikoanalyse \\\lasthline
 \end{tabularx}
 
 \subsection{Informationsbeschaffung}
 \label{sec:info}
-Diese Projektphase umfasst die Recherche nach geeigneten Komponenten, Implementierungsmöglichkeiten auf Mikrocontrollern oder Computer, sowie der Analyse von der bestehenden Hardware. Es wird ein sehr breites Themenfeld analysiert, um den Umfang des Produkts kennen zu lernen. Sie dient als Wissenserarbeitung für die Konzeptionsphase. \\
+Diese Projektphase umfasst die Recherche nach geeigneten Komponenten, Implementierungsmöglichkeiten auf Mikrocontrollern oder Computer, sowie der Analyse von den bestehenden Hardware. Es wird ein sehr breites Themenfeld analysiert, um den Umfang des Produkts kennen zu lernen. Sie dient als Wissenserarbeitung für die Konzeptionsphase. \\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[25]{h} \\\hline
@@ -179,15 +180,15 @@ Ergebnisse & Stichpunktliste mit Realisierungsmöglichkeiten, Ordner mit relevant
 Dieses Phase umfasst den Entwurf der Hardware und der Software für das 3D-Laser Modul. Es werden die benötigten Bauteile ausgewählt, dimensioniert und der Schaltplan des Gerätes erstellt. Die Software wird in einzelne Module aufgeteilt und die Schnittstellen zwischen den Modulen werden definiert. Der Programmablauf wird entworfen und geeignete Algorithmen für die Signalanalyse ausgewählt.\\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
-Aufwand & \unit[30]{h} \\\hline
+Aufwand & \unit[]{h} \\\hline
 Personen & Daniel Zimmermann \\\hline
 Arbeitsmittel & Ergebnisse von \ref{sec:info} \\\hline
-Ergebnisse & Schaltplan des Gerätes, Bauteilliste, Platinenlayouts, CAD-Zeichnungen, Konzpet-Modell \\\lasthline
+Ergebnisse & Schaltplan des Produkts, Bauteilliste, Platinenlayouts, CAD-Zeichnungen, Konzept-Modell \\\lasthline
 \end{tabularx}
 
 \subsection{Realisierungsphase}
 \label{sec:real}
-Diese Phase umfasst den Einkauf der effektiven Bauteile, die Erstellung der Hardware, das Implementieren der Software sowie der Integration von Software und Hardware \\
+Diese Phase umfasst den Einkauf der effektiven Bauteile, die Erstellung der Hardware, das Implementieren der Software sowie der Integration von Software und Hardware. \\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[50]{h} \\\hline
@@ -199,8 +200,8 @@ Ergebnisse &  komplettes Produkt zum Test bereit\\\lasthline
 \subsection{Testphase}
 \label{sec:test}
 Dieses Arbeitspaket umfasst den Test der entwickelten Hard- und Software.
-Es wird zunächst die mechanischen Tests durchgeführt, danach  werden softwaresetige Tests getätigt.
-Anschließend findet der Test auf dem Packbot statt. Es umfasst auch die Behebung der festgestellten Mängel. \\
+Es werden zunächst die mechanischen Tests durchgeführt, danach  werden softwaresetige Tests getätigt.
+Anschließend findet der Test auf dem Packbot statt. Diese Phase umfasst auch die Behebung der festgestellten Mängel. \\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[20]{h} \\\hline
@@ -212,7 +213,7 @@ Ergebnisse & Dokumentation der Testergebnisse, Fehlerbereinigte Hard-/Software, 
 
 \subsection{Dokumentation}
 \label{sec:doku}
-Dieses Arbeitspaket umfasst die gesamte Erstellung der Projektdokumentation. Das beinhaltet die gesamten Vorgaben, welche in den Anforderungen protokolliert sind. Es werden Ergebnisse aus den verschiedenen Phasen detailliert präsentiert und entsprechende Erläuterungen zu Problemstellungen und Vorgehensweisen gemacht. \\
+Dieses Arbeitspaket umfasst die gesamte Erstellung der Projektdokumentation. Das beinhaltet die gesamten Vorgaben, welche in den Anforderungen protokolliert sind. Es werden Ergebnisse aus den verschiedenen Phasen detailliert präsentiert und entsprechende Erläuterungen zu Problemstellungen und Vorgehensweisen gemacht. Jedes Unterkapitel wird reflektiert. \\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[60]{h} \\\hline
@@ -223,10 +224,10 @@ Ergebnisse & Projektdokumentation, Projektmanagement, Schlussbericht,  \\\lasthl
 
 \subsection{Präsentation \& Poster}
 \label{sec:PPP}
-Dieses Arbeitspaket beinhaltet das Erstellen der Zwischenpräsentation, Abschlusspräsentation und des Posters. Diese  \\
+Dieses Arbeitspaket beinhaltet alle Phasen der Präsentation.  Es wurden somit das Erstellen und Abhalten der Zwischenpräsentation, der Abschlusspräsentation und des Posters zusammengetragen.   \\
 \begin{tabularx}{\textwidth}{|l|X|}
 	\firsthline
-	Aufwand & \unit[10]{h} \\\hline
+	Aufwand & \unit[21]{h} \\\hline
 	Personen & Daniel Zimmermann \\\hline
 	Arbeitsmittel & Powerpoint, Bericht \\\hline
 	Ergebnisse & Zwischenpräsentation, Abschlusspräsentation, Poster  \\\lasthline
