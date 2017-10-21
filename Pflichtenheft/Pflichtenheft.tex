@@ -43,6 +43,18 @@
 \usepackage{tabularx}
 %Erlaubt Seitenumbrüche mit Tabellen
 \usepackage{longtable}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{Pfichtenheft} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{Hochschule Luzern T\&A} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\fancyfoot[L]{Daniel Zimmermann} %Fusszeile links
+\fancyfoot[C]{\thepage} %Seitennummer
+\fancyfoot[R]{16. Oktober 2017}
+\renewcommand{\footrulewidth}{0.4pt} %untere Trennlinie
  
 % Titel
 \makeatletter
@@ -57,8 +69,8 @@
 \title{3D Laserscanner für mobilen Roboter}
 \author{Daniel Zimmermann}
 \matrikelnr{15-465-271}
-\firstExaminer{Björn Jensen}
-\secondExaminer{Markus Thalmann}
+\firstExaminer{Dr. Björn Jensen}
+\secondExaminer{Prof. Dr. Markus Thalmann}
 
 
 
@@ -95,13 +107,13 @@
 			\begin{tabular}[t]{rl}
 				\textbf{Dozent}: &\@firstExaminer\\
 				\textbf{Experte:} & \@secondExaminer\\
-				\textbf{Erstellt von:} &\@author\\
-				\textbf{Matrikelnummer:} & \@matrikelnr\\
+				\textbf{Industriepartner:} & Dr. Thomas Nussbaumer \\
 				\textbf{Klassifikation:} & Rücksprache \\
 			\end{tabular}
 		\vskip 1.5cm
-		\includegraphics[width=1\textwidth]{bilder/Pflichtenheft_0.PNG}
+			\includegraphics[width=1\textwidth]{bilder/Pflichtenheft_0.PNG}
 		\end{flushleft}
+	
 	\end{center}
 	\restoregeometry
 \end{titlepage}
@@ -110,7 +122,7 @@
 % Hier soll das Ziel des Projektes in eigenen Worten beschrieben werden.
 % Dabei sollte auf die Bedeutung und den Nutzen des Projektergebnisses eingegangen werden.
 
-Ziel des Projektes ist es die Realisierung eines 3D-Laser Moduls. In erster Priorität soll damit 3D Mapping in Echtzeit betrieben werden können. Das Modul wird mit dem bestehenden 3D Laserscanner von Velodyne des Typs VLP-16 realisiert. Dabei soll eine möglichst detaillierte Punktwolke erstellt werden, welche visualisiert werden kann. Zweite Priorität ist die Hinderniserkennung in Frontrichtung. Dazu muss in Frontrichtung eine detaillierte Punktwolke ermittelt werden können. Das Modul soll einerseits auf dem Packbot nutzbar, sowie auch eigenständig einsetzbar sein. 
+Das Ziel des Projektes ist die Realisierung eines 3D-Laser Moduls als Prototyp. In erster Priorität soll damit 3D Mapping in Echtzeit betrieben werden können. Das Modul wird mit dem bestehenden 3D Laserscanner von Velodyne des Typs VLP-16 realisiert. Dabei soll eine möglichst dichte Punktwolke erstellt werden, welche visualisiert werden kann. Zweite Priorität ist die Hinderniserkennung in Frontrichtung. Dazu muss in Frontrichtung eine detaillierte Punktwolke ermittelt werden können. Das Modul soll einerseits auf dem iRobot Packbot nutzbar, sowie auch eigenständig einsetzbar sein. 
 
 \section{Anforderungen}
 % Hier sollen die Anforderungen an das Projektergebnis beschrieben werden. 
@@ -125,8 +137,8 @@ In nächsten Abschnitt werden die verschiedenen Anforderungen rund um die Projekt
 	\item E: Eigene Anforderung 
 	\item D: Dozentenanforderung
 	\item P: Modulanforderung
+\\
 \end{itemize}
-
 Neben den Kriterien wurden die Anforderungen zusätzlich in Themengebiete unterteilt, welche in den folgenden Unterkapiteln ersichtlich sind.
 
 \subsection{Allgemeine Anforderungen}
@@ -151,11 +163,11 @@ Neben den Kriterien wurden die Anforderungen zusätzlich in Themengebiete unterte
 
 \section{Projektphasen}
 
-Nachfolgend werden die einzelnen Projektphasen erläutert. Sie geben Auskunft, wielange man mittels den angegebenen Arbeitsmitteln an der Phase tätig sein soll und welche Ergebnisse daraus entspringen sollten. Dazu wird ein entsprechende Aufwandseinschätzung mitgeliefert, welchen den Umfang der Phase definiert. Die detaillierte Aufwandsabrechnung wird im detaillierten Projektplan dargelegt. 
+Nachfolgend werden die einzelnen Projektphasen erläutert. Sie geben Auskunft, wie lange man mittels den angegebenen Arbeitsmitteln an der Phase tätig sein soll und welche Ergebnisse daraus entspringen. Dazu wird ein entsprechende Aufwandseinschätzung mitgeliefert, welchen den zeitlichen Umfang der Phase in Stunden wiedergibt. Die effektive Aufwandsabrechnung wird seperat im detaillierten Projektplan dargelegt. 
 
 \subsection{Initialisierung \& Projektplanung}
 \label{sec:init} 
-Dieses Abschnitt umfasst die administrativen Aufgaben, welche für die Projektplanung und Projektdurchführung nötig sind. Sie sollen möglichst als Vorbereitung dienen, damit mit den Ergebnissen die Projektdurchführung  erleichtert wird.\\
+Dieses Abschnitt umfasst die administrativen Aufgaben, welche für die Projektplanung und Projektdurchführung nötig sind. Sie sollen möglichst als Vorbereitung dienen, damit mit den Ergebnissen die Projektdurchführung erleichtert wird.\\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[12]{h} \\\hline
@@ -166,7 +178,7 @@ Ergebnisse & Pflichtenheft, Backup-Möglichkeit, Detaillierter Projektplan, Grobp
 
 \subsection{Informationsbeschaffung}
 \label{sec:info}
-Diese Projektphase umfasst die Recherche nach geeigneten Komponenten, Implementierungsmöglichkeiten auf Mikrocontrollern oder Computer, sowie der Analyse von den bestehenden Hardware. Es wird ein sehr breites Themenfeld analysiert, um den Umfang des Produkts kennen zu lernen. Sie dient als Wissenserarbeitung für die Konzeptionsphase. \\
+Diese Projektphase beinhaltet die Recherche nach geeigneten Komponenten, Implementierungsmöglichkeiten auf Mikrocontrollern oder Computer, sowie der Analyse von den bestehenden Hardware. Es wird ein sehr breites Themenfeld analysiert, um den Umfang des Produkts kennen zu lernen. Sie dient als Wissenserarbeitung für die Konzeptionsphase. \\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[25]{h} \\\hline
@@ -177,10 +189,10 @@ Ergebnisse & Stichpunktliste mit Realisierungsmöglichkeiten, Ordner mit relevant
 
 \subsection{Konzeptionsphase}
 \label{sec:Konzeptphase}
-Dieses Phase umfasst den Entwurf der Hardware und der Software für das 3D-Laser Modul. Es werden die benötigten Bauteile ausgewählt, dimensioniert und der Schaltplan des Gerätes erstellt. Die Software wird in einzelne Module aufgeteilt und die Schnittstellen zwischen den Modulen werden definiert. Der Programmablauf wird entworfen und geeignete Algorithmen für die Signalanalyse ausgewählt.\\
+Die Konzeptionsphase umfasst den Entwurf der Hardware und der Software für das 3D-Laser Modul. Es werden die benötigten Bauteile ausgewählt, dimensioniert und der Schaltplan des Gerätes erstellt. Die Software wird in einzelne Module aufgeteilt und die Schnittstellen zwischen den Modulen werden definiert. Der Programmablauf wird entworfen und geeignete Algorithmen für die Signalanalyse ausgewählt.\\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
-Aufwand & \unit[]{h} \\\hline
+Aufwand & \unit[30]{h} \\\hline
 Personen & Daniel Zimmermann \\\hline
 Arbeitsmittel & Ergebnisse von \ref{sec:info} \\\hline
 Ergebnisse & Schaltplan des Produkts, Bauteilliste, Platinenlayouts, CAD-Zeichnungen, Konzept-Modell \\\lasthline
@@ -188,7 +200,7 @@ Ergebnisse & Schaltplan des Produkts, Bauteilliste, Platinenlayouts, CAD-Zeichnu
 
 \subsection{Realisierungsphase}
 \label{sec:real}
-Diese Phase umfasst den Einkauf der effektiven Bauteile, die Erstellung der Hardware, das Implementieren der Software sowie der Integration von Software und Hardware. \\
+Die Realisierungsphase umfasst den Einkauf der effektiven Bauteile, die Erstellung der Hardware, das Implementieren der Software sowie der Integration von Software und Hardware. \\
 \begin{tabularx}{\textwidth}{|l|X|}
 \firsthline
 Aufwand & \unit[50]{h} \\\hline
