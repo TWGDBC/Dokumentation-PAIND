@@ -14,12 +14,13 @@
 %Blindtext
 \usepackage{blindtext}
 
+% todo
+\usepackage{todonotes}
+
 %Erlaubt unteranderem Umbrücke captions
 \usepackage{caption}
-
 %Stichwortverzeichnis
 \usepackage{imakeidx}
-
 %Kompakte Listen
 \usepackage{paralist}
 
@@ -27,7 +28,7 @@
 \usepackage{epigraph}
 
 %Glossar, Stichworverzeichnis
-\usepackage[toc, acronym]{glossaries} % Akronyme werden als eigene Liste aufgeführt
+\usepackage[xindy, toc]{glossaries} % Akronyme werden als eigene Liste aufgeführt
 
 %Anpassung von Kopf- und Fußzeile
 %beinflusst die erste Seite des Kapitels
@@ -35,49 +36,30 @@
 % []: Pages with chapter titles
 % {}: Pages without chapter titles
 % Inner head
-\usepackage[automark,headsepline]{scrlayer-scrpage}
-\automark{chapter}
-\ihead{\leftmark}
-\chead{test test}
-\ohead{\thepage}
-\ifoot*{dani}
-\cfoot[\thepage]{hallo}
-\cfoot*{}
-\ofoot*{}
-\pagestyle{scrheadings}
 
-
-
-
-%\pagestyle{fancy} 
-%\fancyhf{} 
-%\fancyhead[L]{Text 1} 
-%\fancyhead[C]{Text 2} 
-%\fancyhead[R]{Email Adresse} 
-%\fancyfoot[R]{\thepage} 
-%
-%\fancypagestyle{Preinhalt}{% 
-%	\fancyhf{}% 
-%	\fancyhead[L]{Industriearbeit PAIND} 
-%	\fancyhead[R]{Hochschule Luzern Technik \& Architektur}
-%} 
-%\fancypagestyle{ErsteSeite}{% 
-%	\fancyhf{}% 
-%	\fancyhead[L]{} 
-%}
-
+\renewcommand*\chapterpagestyle{fancy}
+% neue Kopfzeilen mit fancypaket
+\usepackage{fancyhdr} %Paket laden
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{Hochschlue Luzern T\&A} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\fancyfoot[R]{\thepage} %Seitennummer
+\fancyfoot[L]{Daniel Zimmermann} %Seitennummer
+\renewcommand{\footrulewidth}{0.4pt} %untere Trennlinie
+%\renewcommand{\chapterpagestyle}{scrheadings}
 %Auskommentieren für die Verkleinerung des vertikalen Abstandes eines neuen Kapitels
-%\renewcommand*{\chapterheadstartvskip}{\vspace*{.25\baselineskip}}
+\renewcommand*{\chapterheadstartvskip}{\vspace*{.25\baselineskip}}
+
 
 %Zeilenabstand 1,5
 \usepackage[onehalfspacing]{setspace}
-
 %Verbesserte Darstellung der Buchstaben zueinander
 \usepackage[stretch=10]{microtype}
-
 %Deutsche Bezeichnungen für angezeigte Namen (z.B. Innhaltsverzeichnis etc.)
 \usepackage[ngerman]{babel}
-
 %Unterstützung von Umlauten und anderen Sonderzeichen (UTF-8)
 \usepackage{lmodern}
 \usepackage[utf8]{luainputenc}
@@ -85,10 +67,8 @@
 
 %Einfachere Zitate
 \usepackage{epigraph}
-
 %Verwendung von Akronymen
 \usepackage[printonlyused]{acronym}
-
 %Unterstützung der H positionierung (keine automatische Verschiebung eingefügter Elemente)
 \usepackage{float} 
 
@@ -101,7 +81,7 @@
 \usepackage{listings}
 
 %Definierung eigener Farben bei nutzung eines selbst vergebene Namens
-\usepackage[table,xcdraw]{xcolor}
+%\usepackage[table,xcdraw]{xcolor}
 
 %Vektorgrafiken
 \usepackage{tikz}

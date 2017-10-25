@@ -1,42 +1,68 @@
 \chapter{Informationsbeschaffung}
+\label{Informationsbeschaffung}
 
-Im Rahmen der Projektplanung wurde in einer ersten Phase ein Zeitraum zur Informationsbeschaffung festgelegt.
+Im Rahmen der Projektplanung, welche in Anhang \todo{insert reference} ersichtlich ist, wurde in einer ersten Phase ein Zeitraum zur Informationsbeschaffung festgelegt. Dieser Abschnitt ist einerseits für die Themeneinarbeitung und anderseits für die Absteckung der Aufgabe und der Ziele erforderlich.
 
-Nachfolgend werden die wichtigsten Erkenntnisse der Informationsbeschaffung erläutert, die maßgebend für die Konzeption in Kapitel \ref{Konzeption} und Realisierung in Kapitel \ref{Realisierung} sind. Dabei werden zu einzelnen Komponenten und Verfahren Stellung genommen und eruiert, ob diese sich für das Projekt eignen. Des weiteren sollen relevante Software erläutert werden, welche für die Realisierung nötig sind.
+Nachfolgend werden die wichtigsten Erkenntnisse der Informationsbeschaffung erläutert, die maßgebend für die Konzeption in Kapitel \ref{Konzeption} und die Realisierung in Kapitel \ref{Realisierung} sind. Dabei werden zu einzelnen Komponenten und Verfahren Stellung genommen und eruiert, ob diese sich für das Projekt eignen. Des Weiteren werden relevante Software erläutert, welche für die Realisierung nötig sind. Die Aufgabenstellung wurde dabei in verschiedene Funktionsblöcke unterteilt, die in den nachfolgenden Unterkapiteln beschrieben werden 
 
 
-\section{bestehende Komponenten}
-\label{bestehende_Sensoren}
-In diesem Unterkapitel werden die bestehenden Komponenten Velodyne VLP-16 und der Hokuyo URG-LX01 detailliert betrachtet und die wichtigsten Spezifikation hervorgehoben.  
+\section{Entfernungsmessung}
+\label{sec:Entfernungsmessung}
+In diesem Unterkapitel werden die bestehenden Entfernungsmesser Velodyne VLP-16 und der Hokuyo URG-LX01 detailliert betrachtet und die wichtigsten Spezifikation hervorgehoben. Es werden zusätzlich noch alternative Produkte gegenüber gestellt.
+
+\subsection{Hokuyo URG-04LX}
+\label{subsec:Hokuyo}
+Der Hokuyo URG-04LX ist ein 2D Entfernungsmessser, der mittels LIDAR Verfahren 
+
+Der bedeutendste Nachteil des URG-04LX ist das messbare Distanzspektrum. Die maximale Messdistanz von 4 Meter, wobei zusätzlich eine minimale Messdistanz von 40 Zentimter eingehalten werden muss, genügt nur für sehr nahe räumliche Messungen. Der Einsatzbereich beschränkt sich hier lediglich für Gebäude interne Messungen.
 
 \subsection{Velodyne VLP-16 Puck}
+\label{subsec:Velodyne}
+Beim Velodyne VLP-16 Puck handelt es sich um einen Echtzeit 3D-Laser-Scanner, der auf dem LIDAR-Verfahren basiert. Dabei werden Der 3D Laserscanner
 
-Beim Velodyne VLP-16 Puck handelt es sich um einen Echtzeit 3D-Laser-Scanner, der auf dem LIDAR-Verfahren basiert. Dabei werden Der 3D Laserscanner 
+\subsection{Alternativen zu LIDAR}
+ \label{subsec:Alternative}
+ 
 
+\section{Software}
+\label{sec:Software}
 
-\section{eruierte Komponenten}
-\label{eruierte_Komponenten}
+\subsection{Ubuntu LTS 16.04}
 
-
-\section{ROS Robot Operating System}
+\subsection{ROS Robot Operating System}
+\label{subsec:ROS}
 Die gesamte Kommunikation mit Sensoren und Aktoren findet auf dem Packbot mit einem spezifisch implementierten Robot Operating System, kurz. ROS, statt. Daher ist es naheliegend, um die Integrität des zu erarbeitenden 3D-Laser-Moduls zu gewährleisten, dieses Software-Framework zu nutzen.  
 
-\subscetion{ROS Kinetic Kame vs. Indigo} 
-Grundsätzlich wird ROS auf einem Ubuntu Betriebssystem aufgesetzt und ist ein grösstenteils Kommando-basiertes Software-Framework. Diese in 2007 entwickelte Open Source Software erhielt in den letzten Jahren ständig neue und überarbeitete Versionen.  
+\subsection{ROS Kinetic Kame vs. Indigo}
+\label{subsec:OS_versus} 
+Grundsätzlich wird ROS auf einem Ubuntu Betriebssystem aufgesetzt und ist ein grösstenteils Kommando-basiertes Software-Framework. Diese in 2007 entwickelte Open Source Software erhielt in den letzten Jahren ständig neue und überarbeitete Versionen. 
 
+Die Auswahl wurde größtenteils durch die bestehende Software definiert. Da bereits mit Ubuntu LTS 16.04 und ROS Kinetic Kame gearbeitet wurde war dies die naheliegendste Möglichkeit.
 
-\subsection 
-
-
+\subsection{BLAM}
 \blinditemize
 
-\section {weitere verwendete Software}
-
-
 \subsection{Wireshark}
-
 \label{Mind Map}
 
+\subsection{Onshape}
+\label{OnShape}
+
+\section{Datenverarbeitung}
+\label{sec:Datenverarbeitung}
+Um die Daten
+
+\subsection:Raspberry Pi 2
+\label{sec:Raspberry}
+
+\subsection{Banana Pi M3}
+\label{sec:BananaPi}
+
+\subsection{Odroid} 
+\label{Odroid}
+
+
+\section{Hardware}
 
 
 

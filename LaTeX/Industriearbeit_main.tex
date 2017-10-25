@@ -13,14 +13,14 @@
 \submitDate{22.12.2017}
 \firstExaminer{Björn Jensen}
 \secondExaminer{Markus Thalmann}
-%%End Titles
 
+%%End Titles
 \makeindex[title=Stichwortverzeichnis, options=-s indexstyle.ist, intoc]
 \indexsetup{level=\chapter*,toclevel=chapter}
 
-\makeglossaries
-\loadglsentries{glossary_and_acronyms.tex}
-\setacronymstyle{long-short}
+%%\makeglossaries
+%%\loadglsentries{glossaryandacronyms.tex}
+%%\setacronymstyle{long-short}
 
 \begin{document}
 
@@ -28,17 +28,18 @@
 \maketitle
 
 \pagenumbering{Roman}
-
 % Eigenständigkeitserklärung
+\fancyhead[L]{\nouppercase{Introduktion}} %Kopfzeile links
 \input{chapter/Eigenstaendigkeitserklaerung}
 % Vorwort
-\include{chapter/Vorwort} \clearpage
+\input{chapter/Vorwort} \clearpage
 % Abstract
-\include{chapter/Abstract} \clearpage
+\input{chapter/Abstract} \clearpage
 
-\tableofcontents \newpage
+\input{Inhaltsverzeichnis} \clearpage
 
 \pagenumbering{arabic}
+\fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
 \input{chapter/Einleitung} \clearpage
 \input{chapter/Informationsbeschaffung} \clearpage
 \input{chapter/Konzeption} \clearpage
@@ -52,11 +53,10 @@
 \listoffigures \clearpage
 \listoftables \clearpage
 \lstlistoflistings \clearpage
-
 \printindex \clearpage
 
-\printglossary[title={Glossar}] \clearpage
-\printglossary[style=dottedlocations,type=\acronymtype,title={Abkürzungsverzeichnis}] \clearpage
+%%\printglossary[title={Glossar}] \clearpage
+%%\printglossary[style=dottedlocations,type=\acronymtype,title={Abkürzungsverzeichnis}] \clearpage
 
 \printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage
 \printbibliography[heading=bibintoc, keyword={online}, title={Onlinequellen}]\clearpage
