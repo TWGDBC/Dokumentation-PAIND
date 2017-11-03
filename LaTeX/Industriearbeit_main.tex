@@ -18,15 +18,14 @@
 \makeindex[title=Stichwortverzeichnis, options=-s indexstyle.ist, intoc]
 \indexsetup{level=\chapter*,toclevel=chapter}
 
-%%\makeglossaries
-%%\loadglsentries{glossaryandacronyms.tex}
-%%\setacronymstyle{long-short}
 
+%\loadglsentries{glossaryandacronyms.tex}
+%\setacronymstyle{long-short}
+%\makeglossaries
 \begin{document}
 
 \pagenumbering{alph} %fix for same identifier warning, character is not show in title
 \maketitle
-
 \pagenumbering{Roman}
 % Eigenständigkeitserklärung
 \fancyhead[L]{\nouppercase{Introduktion}} %Kopfzeile links
@@ -46,23 +45,29 @@
 \input{chapter/Realisierung} \clearpage
 \input{chapter/Tests} \clearpage
 \input{chapter/Schlusswort} \clearpage
-\input{chapter/Beispiele} \clearpage
+%\input{chapter/Beispiele} \clearpage
 \input{chapter/Software} \clearpage
 
-\pagenumbering{Alph}
+\pagenumbering{Roman}
 \listoffigures \clearpage
 \listoftables \clearpage
 \lstlistoflistings \clearpage
-\printindex \clearpage
+\newpage
+\fancyhead[L]{\nouppercase{Glossar}} %Kopfzeile links
+\markright{GLOSSAR}
+\chapter*{Glossar}\addcontentsline{toc}{chapter}{Glossar}
+\input{glossary_and_acronyms.tex}
 
-%%\printglossary[title={Glossar}] \clearpage
-%%\printglossary[style=dottedlocations,type=\acronymtype,title={Abkürzungsverzeichnis}] \clearpage
+
+%\printglossary[title={Glossar}] \clearpage
+%\printglossary[style=dottedlocations,type=\acronymtype,title={Abkürzungsverzeichnis}] \clearpage
 
 \printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage
 \printbibliography[heading=bibintoc, keyword={online}, title={Onlinequellen}]\clearpage
 \printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
 
 % Anhang
+\fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
 \input{chapter/Anhang}
 
 \end{document}

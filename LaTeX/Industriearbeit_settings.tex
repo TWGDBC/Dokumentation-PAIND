@@ -28,7 +28,8 @@
 \usepackage{epigraph}
 
 %Glossar, Stichworverzeichnis
-\usepackage[xindy, toc]{glossaries} % Akronyme werden als eigene Liste aufgeführt
+\usepackage{acronym}
+\renewcommand*{\acsfont}[1]{\textnormal{#1}}
 
 %Anpassung von Kopf- und Fußzeile
 %beinflusst die erste Seite des Kapitels
@@ -67,8 +68,6 @@
 
 %Einfachere Zitate
 \usepackage{epigraph}
-%Verwendung von Akronymen
-\usepackage[printonlyused]{acronym}
 %Unterstützung der H positionierung (keine automatische Verschiebung eingefügter Elemente)
 \usepackage{float} 
 
@@ -138,13 +137,4 @@
 	breaklines=true,
 	breakatwhitespace=true,
 	prebreak={\mbox{$\hookleftarrow$}}
-}
-
-%Anpassungen für das Abkürzungsverzeichnis
-\newglossarystyle{dottedlocations}{%
-	\glossarystyle{list}%
-	\renewcommand*{\glossaryentryfield}[5]{%
-		\item[\glsentryitem{##1}\glstarget{##1}{##2}] \emph{##3}%
-		\unskip\leaders\hbox to 2.9mm{\hss.}\hfill##5}%
-	\renewcommand*{\glsgroupskip}{}%
 }

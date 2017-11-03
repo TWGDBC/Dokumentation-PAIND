@@ -1,22 +1,30 @@
 \chapter{Konzeption}
-\label{Konzeption}
+\label{chap:Konzeption}
 
 Dieses Kapitel beschreibt die Resultate und Ergebnisse aus der Konzeptionsphase. Nachfolgend werden auf die verschiedenen Konzeptionsvarianten eingegangen. Dabei werden Überlegungen und Bezüge zur Aufgabenstellung gemacht. Jede Variante wird abschliessend mit eienm kurzen Fazit beurteilt.
 
 \section{Konzeptionsgrundlage}
+\label{sec:Konzeptiongrund}
 Als Konzeptionsgrundlage dient das Pflichtenheft, welches im Anhang \todo{referenz} einsehbar ist. Wie darin erwähnt, soll das Modul möglichst frei drehend konzipiert werden. Dies ist das ausschlaggebendste Kriterium für die Bauform des Moduls. Da der Velodyne VLP-16, wie in Kapitel \todo{ref} erläutert, einen begrenzten horizontalen Öffnungswinkel besitzt, wurde bei den folgenden Konzepten die Möglichkeit eines beweglichen Moduls geprüft. Ein weiteres relevantes Kriterium ist die Einsatzmöglichkeit des Modul. Es soll einerseits auf dem Packbot, sowie auch als eigenständiges Produkt funktionieren. Daher sind als Schnittstellen einen Speiseanschluss, welcher 12 Volt DC liefert und eine Ethernet RJ45-Anschluss nötig. Nachfolgend sind auf diesen Grundlagen drei Varianten dargelegt.
 
 
 \section {Variante 1: Plattform}
-\label{var1}
+\label{sec:var1}
 Die Variante 1: Plattform ist in der Skizze in Abbildung \todo{referenz} ersichtlich. Bei dieser Konstruktion werden alle elektronischen Komponenten, welche für die Signalverarbeitung und die Energieversorgung nötig sind, in einem rechteckigen Gehäuse im unteren Teil verbaut. Die Interface Box des Velodyne VLP-16 wird auch in diesem Gehäuse untergebracht. Lediglich der Laserscanner VLP-16 befindet sich ausserhalb des Gehäuses auf der Plattform oberhalb des Gehäuses.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{resources/skizzev1.PNG}
+	\caption{Skizze Variante 1}
+\label{fig:skizze_unrotierend}
+\end{figure} 
 	
  Die Eigenheit dieser Konzeption ist die Plattform, auf welcher sich der Velodyne VLP-16 befindet. Der Einsatz dieser Plattform erklärt sich durch ein bekanntes Regelungsexperiment namens "Ball on a Plate". In Abbildung \todo{ref }ist eine CAD-Zeichnung eines solchen Regelungsexperiment dargestellt. Bei "Ball on a Plate" werden zwei Servomotoren, welche je mit einem Gelenk mit einer Seite der Plattform verbunden sind, angesteuert. Indem die Servomotoren mittig auf der Seite mit der rechteckigen Plattform verbunden sind, kann durch Drehen der Servomotoren die Plattform zweiachsig geneigt werden. Im Regelungsexperiment kann durch Zuhilfenahme einer PID-Regelung ein Ball darauf balanciert werden. 
  
 \begin{figure}[H]
 	\centering
  	\includegraphics[width=1\textwidth]{resources/ballonaplate_cad}
-	\caption{Ball on a Plate CAD {\cite{3ders.org}}}
+	\caption{Ball on a Plate CAD {\cite{ballonaplate}}}
 	\label{fig:BalllonaPlateCAD}
 \end{figure} 
 
@@ -27,16 +35,33 @@ Die Variante 1: Plattform ist in der Skizze in Abbildung \todo{referenz} ersicht
  Während der Besprechung mit Herr Jensen vom blabla \todo{ZEIT} wurde diese Konzeption verworfen und nicht mehr weiter betrachtet.
  
  
- 
- \textbf{Fazit}
- 
 
-\section {Variante 2: Turm}
-\label{var2}
+\section {Variante 2: Turm stationär}
+\label{sec:var2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[angle=90,width=0.8\textwidth]{resources/skizze_unrotierend.PNG}
+	\caption{Skizze Variante 2 }
+	\label{fig:skizze_unrotierend}
+\end{figure} 
+
+Das zweite Konzept ist ein Turmartige Konstruktion. Die Idee dazu lieferte das TEAM IMM an der \ac{acronym} 2017 Dabei befindet sich der Velodyne VLP-16 abgesetzt von den elektrischen Komponenten in der Höhe. Dies ermöglicht einen grösseren Erfassungswinkel. Speziell an diesem Konzept ist...
 
 
+\section {Variante 3: Turm rotierend}
+\label{sec:var3}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[angle=90,width=0.7\textwidth]{resources/skizze_rotierend.PNG}
+	\caption{Skizze Variante 3 }
+	\label{fig:skizze_rotierend}
+\end{figure} 
 
 \section {ausgewählte Komponenten}
+\label{sec:ausgewählteKomponenten}
 
 \section{Zwischenfazit}
-\label{Zwischenfazit_konzept}
+\label{ZwischenfazitKonz}
+
