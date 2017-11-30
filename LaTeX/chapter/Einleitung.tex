@@ -1,22 +1,22 @@
 
-\chapter{Einleitung}
-
-\section {Ausgangssituation}
-\label{sec:Ausgangssituation}
-Im Institut für Innovation und Technologiemanagment IIT an der Hochschule Luzern wird mit dem mobilen Roboter \grqq Packbot\grqq  im Bereich unbemannter Robotik stetig weitergeforscht. Dabei werden immer wieder neue Technologien und Verfahren angewandt und damit neue Erkenntnisse zu erzielen. Ein sehr aktuelles Thema ist dabei die digitale Kartographie. Mit präzisen Laserentfernungsmesser und entsprechender Software lassen sich heute detaillierte Karten von der Umgebung erstellen, sogenannt 3D-Mapping. Dabei werden die gemessen Distanzen zu einer Punktwolke (Pointcloud) zusammengeführt und visualisiert.
-In diesem Zusammenhang steht nun die Aufgabenstellung des PAIND+E1.
-.
-\section{Aufgabenstellung}
-\label{sec:Aufgabenstellung}
-Nach Erhalt der Aufgabenstellung galt es anfänglich, ein 3D-Laser-Modul mit einem bestehenden 2D-Laser zu realisieren. Beim Projektbeginn im September 2017 wurde dies von Dr. Björn Jensen abgeändert, da nun ein 3D-Laserscanner für diese Aufgabe zur Verfügung steht. Beim zu erarbeitende Projekt handelt es sich um einen funktionsfähigen Prototypen. Der Prototyp soll sich um eine Achse drehen und die Daten dem mobilen Roboter einmal pro Umdrehung zur Verfügung stellen. Das entwickelte Laser-Modul soll im Rahmen der Arbeit auf dem Packbot-Roboter getestet werden.
-
-\section{Ziele}
-\todo{ablgeich mit Projektziele Pflichtenheft}
-\label{sec:Ziele}
-Ziel des Projektes ist die Realisierung eines 3D-Laser Moduls. Dabei wird die gesamte Hardware mit den gewählten Komponenten zusammengebaut. Die Software wird durch bestehende Codepakete und eigener Erweiterungen auf die Aufgabenstellung angepasst. In erster Priorität soll damit 3D Mapping in Echtzeit betrieben werden können. Das Modul wird mit dem bestehenden 3D-Laserscanner der Marke Velodyne des Typs VLP-16 realisiert. Dabei soll eine möglichst grosse räumliche Abdeckung der Umgebung erreicht werden. Diese wird in einer möglichst detaillierten Punktwolke visualisiert. Zweite Priorität ist die Hinderniserkennung in Frontrichtung. Dazu muss in Frontrichtung eine detaillierte Punktwolke ermittelt werden können. Das Modul soll einerseits auf dem Packbot nutzbar, sowie auch eigenständig einsetzbar sein.
+\chapter*{Einleitung}
 
 
+Im Forschungszweig der Robotik entstehen ständig neue und revolutionäre Technologien. Dabei steht die Transformation des weitgehend selbstständigen Roboters im Vordergrund. Diverse Pilotprojekte beweisen bereits heute, dass durch eine komplexe Abstimmung hoch präziser Sensoren die kognitiven und sensorischen Fähigkeiten des Menschen nachgeahmt, wenn nicht sogar übertroffen werden können.Ein gutes Beispiel für diese Transformation sind mobile Roboter wie der iRobot Packpot. Durch entsprechende Logik und Sensorik können die geländegängigen Roboter dem Menschen einen enormen Dienst erweisen. In für Menschen unzugängliche oder nur unter hohem Gefahrenpotential begehbare Orte wie Kriegsgebieten, von Naturkatastrophen geschädigten oder radioaktiv verstrahlten Umgebungen können sie Aufgaben bewältigen, welche dem Menschen alleine unmöglich erscheinen.
 
-\section{Methodik}
-\label{sec:Methodik}
-Für die Aufgabenstellung eignet sich eine strukturierter Projektphasenablauf. Dabei werden nacheinander die Phasen Initialisierung, Informationsbeschaffung, Konzeption, Realisierung und die Testphase durchlaufen. Das Pflichtenheft im Anhang A, grenzt die Aufgabenstellung und die definierten Phasen ab. Im Anhang B ist das dazugehörende Projektmanagement mit entsprechenden Erläuterungen angefügt. \todo{ref und evtl. Erweitern}
+Durch die zunehmende Rechenleistung von Computern und den daraus resultierenden Datenmengen ensteht nun auch die Möglichkeiten mittels Robotern detaillierte Modelle der erwähnten Einsatzgebieten zu erstellen. An diesem Punkt setzt nun die Aufgabenstellung des PAIND+E1 an. Es soll ein low-cost Prototyp eines 3D-Laser-Modul entwickelt werden, mit welchen eine 3D-Karte der Umgebung möglichst detailliert modelliert werden kann. Dabei soll einerseits die Frage geklärt werden, welche Konfiguration eine bestmögliche Modellierung der Umgebung bietet und anderseits, mit welchen Mitteln eine Realisierung möglich ist.
+
+Nach Erhalt der Aufgabenstellung galt es anfänglich, ein 3D-Laser-Modul mit einem bestehenden 2D-Laser zu realisieren. Beim Projektbeginn im September 2017 wurde dies von Dr. Björn Jensen abgeändert, da nun ein 3D-Laserscanner für diese Aufgabe zur Verfügung stand. Der 3D-Laserscanner besitzt gegenüber dem 2D Laser der Vorteil, dass bereits räumliche Messdaten zur Echtzeit übermittelt werden können. Zudem besitzt dieser auch einen bedeutend größeren Messbereich, welcher für die Erstellung von Umgebungskarten nötig ist. Beim zu erarbeitende Projekt handelt es sich um eine Realisierung eines funktionsfähigen Prototypen. Der Prototyp soll sich um eine Achse drehen und die Daten dem mobilen Roboter einmal pro Umdrehung zur Verfügung stellen. Das entwickelte Laser-Modul soll im Rahmen der Arbeit auf dem Packbot-Roboter getestet werden.
+
+Ziel des Projektes ist die Realisierung eines 3D-Laser Moduls. Dabei wird die gesamte Hardware mit den gewählten Komponenten zusammengebaut. Die Software wird durch bestehende Codepakete und eigenen Erweiterungen auf die Aufgabenstellung angepasst. In erster Priorität soll damit 3D Mapping in Echtzeit betrieben werden können. Das Modul wird mit dem bestehenden 3D-Laserscanner der Marke Velodyne des Typs VLP-16 realisiert. Dabei soll eine möglichst grosse räumliche Abdeckung der Umgebung erreicht werden. Diese wird in einer möglichst detaillierten Punktwolke modelliert. Zweite Priorität ist die Hinderniserkennung in Frontrichtung. Dazu muss in Frontrichtung eine detaillierte Punktwolke ermittelt werden können. Das Modul soll einerseits auf dem Packbot nutzbar, sowie auch eigenständig einsetzbar sein. Das Pflichtenheft im Anhang A, grenzt die Aufgabenstellung auf weitere Punkte ein.
+
+Für die Aufgabenstellung eignet sich ein strukturierter Projektphasenablauf. Dabei werden nacheinander die Phasen Initialisierung, Informationsbeschaffung, Konzeption, Realisierung und die Testphase durchlaufen. Im Anhang A Pflichtenheft werden abgeschätzter Aufwand, Arbeitsmittel und zu erwartende Ergebnisse erläutert. 
+
+Der Inhalt der Dokumentation richtet sich nach den zu erarbeitenden Projektphasen. Im Anhang B ist ein detaillierter Projektplan angefügt, welcher einzelne Arbeitspakete und das Zeitmanagement aufzeigt. Im Kapitel \ref{chap:Reflektion} werden dazu noch Erläuterungen getätigt.
+
+
+
+
+
+
+

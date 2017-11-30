@@ -1,0 +1,16 @@
+\subsection{Hokuyo URG-04LX}
+\label{subsec:Hokuyo}
+Der Hokuyo URG-04LX ist ein zweidimensionaler Entfernungsmesser, der mittels \ac{LIDAR} Verfahren misst. Bei diesem Verfahren wird mit reflektierten Laserimpulsen die Entfernung eruiert. Nachfolgende Angaben entstammen aus den Datenblättern. \cite{hokuyo} 
+
+Wie in Abbildung \ref{fig:URG-04LX} ersichtlich, bietet der Laserscanner eine Abdeckung von 240 Grad in eine definierte Evene. Dabei benötigt dieser 100 ms pro Scan. Die zu erwartende Auflösung liegt dabei bei 1 mm. Die gemessenen Daten werden über eine USB-Schnittstelle übermittelt, direkt nachdem der Scan vollführt wurde.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]
+	{resources/detectableAngle.PNG}
+	\caption[messbarer Bereich]{messbarer Bereich} \protect\cite{hokuyo}
+	\label{fig:URG-04LX}
+\end{figure}
+
+\todo{ref}
+Ein bedeutendste Nachteil des URG-04LX für die Aufgabenstellung ist das messbare Distanzspektrum. Die maximale Messdistanz von 4 m genügt nur für sehr nahe räumliche Messungen. Der Einsatzbereich beschränkt sich hier lediglich für Gebäude interne Messungen. Da mit dem dem zu erarbeitenden Modul Umgebungskarten erstellt werden sollen, eignet sich dieser Laser nicht.
