@@ -1,0 +1,14 @@
+@startuml
+digraph G {
+        velodyne_points ->Datenstream_empfangen
+        Datenstream_empfangen->Datenstream_Position_kombinieren
+        Positionstransformation -> Datenstream_Position_kombinieren
+        aktuelle_Position -> Positionstransformation 
+        Datenstream_Position_kombinieren->Datenstream_in_Cloud_speichern
+        Datenstream_in_Cloud_speichern->Cloud_versenden
+        
+        
+    
+} 
+@enduml
+
