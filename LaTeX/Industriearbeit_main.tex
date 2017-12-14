@@ -18,6 +18,7 @@
 \makeindex[title=Stichwortverzeichnis, options=-s indexstyle.ist, intoc]
 \indexsetup{level=\chapter*,toclevel=chapter}
 
+\usepackage{filecontents}
 
 %\loadglsentries{glossaryandacronyms.tex}
 %\setacronymstyle{long-short}
@@ -32,15 +33,32 @@
 \input{chapter/Eigenstaendigkeitserklaerung}
 % Vorwort
 \input{chapter/Abstract} \clearpage
-\input{chapter/Einleitung} \clearpage
+%\input{chapter/Einleitung} \clearpage
 
 % Abstract
 
 \input{Inhaltsverzeichnis} \clearpage
 
+\newpage
+\fancyhead[L]{\nouppercase{Glossar}} %Kopfzeile links
+\markright{GLOSSAR}
+\chapter*{Glossar}\addcontentsline{toc}{chapter}{Glossar}
+\input{glossary_and_acronyms.tex}
+\fancyhead[L]{\nouppercase{Abbildungsverzeichnis}} %Kopfzeile links
+\listoffigures \clearpage
+\fancyhead[L]{\nouppercase{Tabellenverzeichnis}} %Kopfzeile links
+\listoftables \clearpage
+%\lstlistoflistings \clearpage
+
+\fancyhead[L]{\nouppercase{Literaturverzeichnis}} %Kopfzeile links
+%\printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage
+\printbibliography[heading=bibintoc, keyword={online}, title={Literaturverzeichnis}]\clearpage
+\printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
+
+
 \pagenumbering{arabic}
 \fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
-%%\input{chapter/Einleitung} \clearpage
+\input{chapter/Einleitung} \clearpage
 \input{chapter/Informationsbeschaffung} \clearpage
 \input{chapter/Konzeption} \clearpage
 \input{chapter/Realisierung} \clearpage
@@ -50,22 +68,9 @@
 \input{chapter/Software} \clearpage
 
 \pagenumbering{Roman}
-\listoffigures \clearpage
-\listoftables \clearpage
-\lstlistoflistings \clearpage
-\newpage
-\fancyhead[L]{\nouppercase{Glossar}} %Kopfzeile links
-\markright{GLOSSAR}
-\chapter*{Glossar}\addcontentsline{toc}{chapter}{Glossar}
-\input{glossary_and_acronyms.tex}
 
 %\printglossary[title={Glossar}] \clearpage
 %\printglossary[style=dottedlocations,type=\acronymtype,title={Abkürzungsverzeichnis}] \clearpage
-
-\printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage
-\printbibliography[heading=bibintoc, keyword={online}, title={Onlinequellen}]\clearpage
-\printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
-
 % Anhang
 \fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
 \input{chapter/Anhang}

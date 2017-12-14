@@ -25,15 +25,19 @@ Da die 16 Laser mit je 2 $^\circ$ Unterschied ausgerichtet sind ergibt sich dara
 
 Ein relevante Eigenschaft dieses Laserscanners ist die grosse Messdistanz, die Distanzen zwischen 0.3 m bis 100 m ermöglicht. Dabei ist die typische Toleranz +/- 3 cm. Der Reflektionsgrad wird in 256-bit Auflösung angegeben, d.h. dass der Sensor aus der zurückgesendeten Laserimpulsen die Intensität messen kann.
 
-Der VLP-16 benötigt eine separate Interface Box, mit der die Speisung und die Datenschnittstellen zu einem 8-adrigen Kabel zusammengeführt werden. In Abbildung \ref{fig:CablePin} ist dieses Kabel mit Pinbelegung dargestellt. Die Adern 1-4 werden für die Ethernet Datenübertragung benötigt. Die Adern 5 und 6 sind nur bei zugeschaltetem \ac{GPS} nötig, ansonsten sind diese unbenutzt. Die stabilisierte 12 Volt Spannung wird über die Adern 7 und 8 zugeführt.
-
+Der VLP-16 benötigt eine separate Interface Box, mit der die Speisung und die Datenschnittstellen zu einem 8-adrigen Kabel zusammengeführt werden. In Abbildung \ref{fig:CablePin} ist dieses Kabel mit Pinbelegung dargestellt. Die Adern 1-4 werden für die Ethernet Datenübertragung benötigt. Die Adern 5 und 6 sind nur bei zugeschaltetem \ac{GPS} nötig, ansonsten sind diese unbenutzt. Die stabilisierte 12 Volt Spannung wird über die Adern 7 und 8 zugeführt.\todo{steckverbindungen in anhang}
+	\begin{table}
+		\centering
+		
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{resources/Cablepins.PNG}
-	\caption[Anschluss und Kabelbelegung]{Anschluss und Kabelbelegung}\protect\cite{velodyne}
+	\caption[Anschluss und Kabelbelegung]{Anschlussbelegung}
 	\label{fig:CablePin}
 \end{figure} 
-
+	\caption[Anschluss und Kabelbelegung]{Kabelbelegung}
+	\protect\cite{velodyne}	
+\end{table} 
 Die Interface Box ist in Abbildung \ref{fig:InterfaceBox} ersichtlich. Diese besitzt folgende Anschlüsse; eine 12 Volt Speisung, einen Ethernet RJ45-Anschluss und eine \ac{GPS} Schnittstelle. Für die typische Leistungsaufnahme des Sensors wird 8 Watt angegeben. Aus einem Messaufbau konnte bei 12 Volt Speisespannung einen Strom von 0.6 Ampere ermittelt werden. Im Einschaltmoment kann der Strom kurzzeitig auf 0.9 Ampere ansteigen. Dies muss bei der Dimensionierung der Speisung beachtet werden.  
 
 \begin{figure}[H]
@@ -44,7 +48,7 @@ Die Interface Box ist in Abbildung \ref{fig:InterfaceBox} ersichtlich. Diese bes
 	\label{fig:InterfaceBox}
 \end{figure}
 
-Über die 100 Mbps Ethernetverbindung werden die Daten- und Positionspakete vom Velodyne an den Computer übermittelt. Dabei werden für die zwei verschiedenen \ac{UDP} Pakete die Ports 2368 und 8308 gebraucht. Nachfolgend wird in Abbildung \ref{fig:datapakets} der Aufbau eines Datenpakets dargestellt. Jedes Paket besitzt einen 42-Byte Header und einen Datenblock, der aus Laserrückgabewert, kalibrierten Reflektionsgrad, Azimutwert und Zeitstempel besteht.
+Über die 100 Mbps Ethernetverbindung werden die Daten- und Positionspakete vom Velodyne an den Computer übermittelt. Dabei werden für die zwei verschiedenen \ac{UDP} Pakete die Ports 2368 und 8308 gebraucht. Nachfolgend wird in Abbildung \ref{fig:datapakets} der Aufbau eines Datenpakets dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -54,6 +58,7 @@ Die Interface Box ist in Abbildung \ref{fig:InterfaceBox} ersichtlich. Diese bes
 	\label{fig:datapakets}
 \end{figure}
 
+ Jedes Paket besitzt einen 42-Byte Header und einen Datenblock, der aus Laserrückgabewert, kalibrierten Reflektionsgrad, Azimutwert und Zeitstempel besteht. 
 
 \section{Stand der Technik}
  \label{sec:Vorzeigeprojekte}
@@ -74,7 +79,7 @@ Das Institute of Mathematical Machines (IMM) in Warschau hat den Velodyne VLP-16
 In der nachfolgenden Betrachtung wird vom Koordinatensystem der Abbildung \ref{fig:imm} ausgegangen.
 Das Team nutzt bei dieser Konfiguration die begrenzte Auflösung des Sensors besser aus. Die vertikale und horizontale Auflösung wechseln dabei. Ist die Konstruktion nicht drehend, kann er in der Vertikalen den Bereich 360$^\circ$ mit der Auflösung von 0.01$^\circ$ - 0.04$^\circ$ messen. In der Horizontalen kann der Bereich 30$^\circ$ mit 2$^\circ$ aufgelöst werden. 
 
-Der Vorteil dieser Konfiguration wird jedoch erst durch die Rotation um die Z-Achse deutlich. Wird der Sensor nun kontinuierlich um die Z-Achse gedreht, verschieben sich die 16 horizontalen Laserstrahlen mit der Umdrehungsgeschwindigkeit der Konstruktion. Einerseits bewegt sich der 30$^\circ$ grosse Messkegel durch den Raum und kann somit 360$^\circ$ in der Horizontalen vermessen. Anderseits kann durch die interne Rotation des Sensors 360$^\circ$  in der Vertikalen ausgemessen werden. Die schlechtere Auflösung von 2$^\circ$ kann somit kompensiert werden, da sich die Lasterstrahlen kontinuerlich verschieben. Dies Konfiguration ermöglicht eine detaillierte Messung, da jeder Punkt im Raum von 16 Laserstrahlen mit der Auflösung zwischen 0.1$^\circ$ 0.4$^\circ$ durchlaufen wird. 
+Der Vorteil dieser Konfiguration wird jedoch erst durch die Rotation um die Z-Achse deutlich. Wird der Sensor nun kontinuierlich um die Z-Achse gedreht, verschieben sich die 16 horizontalen Laserstrahlen mit der Umdrehungsgeschwindigkeit der Konstruktion. Einerseits bewegt sich der 30$^\circ$ grosse Messkegel durch den Raum und kann somit 360$^\circ$ in der Horizontalen vermessen. Anderseits kann durch die interne Rotation des Sensors 360$^\circ$  in der Vertikalen ausgemessen werden. Die schlechtere Auflösung von 2$^\circ$ kann somit kompensiert werden, da sich die Lasterstrahlen kontinuerlich verschieben. Dies Konfiguration ermöglicht eine detaillierte Messung, da jeder Punkt im Raum von 16 Laserstrahlen mit der Auflösung zwischen 0.1$^\circ$ - 0.4$^\circ$ durchlaufen wird. 
 
 Die oben erläuterte Betrachtung gilt jedoch nur, wenn die Umdrehungsgeschwindigkeit der Konstruktion bedeutend langsamer als die interne Umdrehungsgeschwindigkeit des Sensor ist. Ansonsten besteht die Gefahr, dass die Reflektion des Laserstrahls nicht detektiert werden kann. Die Auflösung ist direkt von der Umdrehungsgeschwindigkeit der Konstruktion abhängig. Es wird zusätzlich davon ausgegangen, dass keine zusätzliche Translation, d.h. Bewegung des Roboters, stattfindet. Diese Konfiguration eignet sich somit, wenn das zu vermessende Gelände bekannt ist. Dadurch können vordefinierte Positionen angesteuert werden, an denen eine halbe Umdrehung ausreicht, um eine räumliche Messung an der definierten Position zu erstellen. 
 
@@ -103,7 +108,7 @@ Auch bei dieser Betrachtung  muss die Umdrehungsgeschwindigkeit der Konstruktion
 Im Vergleich zum Projekt der IMM entstehen bei dieser Konfiguration weniger Messpunkte in Richtung des Roboters und in in Richtung Z-Achse (himmelwärts). Dies ist für Raum interne Messungen unvorteilhaft. Für die Messung im freien Feld ist diese Konfiguration besser geeignet, sofern sich keine hohe Objekte nahe dem Sensor befinden. 
  	
 \subsection{Schlussfolgerung}
-An der \ac{EnRicH} 2017 nutzen mehrere Teams den Velodyne VLP-16 mit unterschiedlichen Konfigurationen. Die zwei betrachteten Konfigurationen nutzen die Möglichkeit einer endlos drehenden mechanischen Konstruktion. Im Unterkapitel \ref{sec:Antriebsmoeglichkeiten} werden mögliche Antriebsmöglichkeiten für eine solche Konstruktion evaluiert. Eine endlos drehende Konstruktion benötigt eine spezielles Handling der Kabelführung, daher wird im Unterkapitel \ref{sec:Schleifring} die Möglichkeit eines Schleifrings beschrieben. Beide Konfiguration besitzen Vor- und Nachteile bei der Umgebungserkennung. Um eine möglichst detaillierte Umgebungswolke zu erstellen müssen vorwiegend Translation und Rotation um die Drehachse kompensiert werden. Diese lassen sich durch Koordinatentransformation und entsprechender Sensorik ermöglichen. In \ref{sec:position} werden dazu mögliche Varianten zur Positionsbestimmung erläutert.
+An der \ac{EnRicH} 2017 nutzen mehrere Teams den Velodyne VLP-16 mit unterschiedlichen Konfigurationen. Die zwei betrachteten Konfigurationen nutzen die Möglichkeit einer endlos drehenden mechanischen Konstruktion. Im Unterkapitel \ref{sec:Antriebsmoeglichkeiten} werden mögliche Antriebsmöglichkeiten für eine solche Konstruktion evaluiert. Eine endlos drehende Konstruktion benötigt eine spezielles Handling der Kabelführung, daher wird im Unterkapitel \ref{subsec:Schleifring} die Möglichkeit eines Schleifrings beschrieben. Beide Konfiguration besitzen Vor- und Nachteile bei der Umgebungserkennung. Um eine möglichst detaillierte Umgebungswolke zu erstellen müssen vorwiegend Translation und Rotation um die Drehachse kompensiert werden. Diese lassen sich durch Koordinatentransformation und entsprechender Sensorik ermöglichen. In Unterkapitel \ref{sec:position} werden dazu mögliche Varianten zur Positionsbestimmung erläutert.
   
 
 \section{Software}
@@ -112,20 +117,20 @@ In diesem Kapitel wird die notwendige Software beschrieben. Es erläutert einers
 
 \subsection{ROS Robot Operating System}
 \label{subsec:ROS}
-Die gesamte Kommunikation mit Sensoren und Aktoren findet auf dem Packbot mit \ac{ROS} statt. Da das 3D-Laser-Modul auf dem Packpot, wie auch selbstständig funktionieren soll, ist ROS nicht zwingend einsetzbar. Dennoch wurde für die Aufgabenstellung ROS gewählt. Im Zusammenhang mit Velodyne und 3D Mapping bietet ROS neben Visualisierungtools und bereits bestehender Treiber-Packages auch die Integrationen der Point Cloud Library (PCL). die PCL ist eine umfangreiche Library, welche viele Funktionen und Codebeispiele bereit stellt, um Punktwolken zu erstellen.
+Die gesamte Kommunikation mit Sensoren und Aktoren findet auf dem Packbot mit \ac{ROS} statt. Da das 3D-Laser-Modul auf dem Packpot, wie auch selbstständig funktionieren soll, ist ROS nicht zwingend einsetzbar. Dennoch wurde für die Aufgabenstellung ROS gewählt. Im Zusammenhang mit Velodyne und 3D Mapping bietet ROS neben Visualisierungtools und bereits bestehender Treiber-Packages auch die Integrationen der \ac{PCL}. Die \ac{PCL} ist eine umfangreiche Softwarebibliothek, welche viele Funktionen und Codebeispiele bereit stellt, um Punktwolken zu erstellen.
 
 Grundsätzlich wird \ac{ROS}, wegen seiner Nähe zu Linux Distributionen, auf einem Ubuntu Betriebssystem aufgesetzt und ist ein Software-Framework, dass die Programmiersprachen C++ und Python nutzt. Diese in 2007 entwickelte Open Source Software erhielt in den letzten Jahren ständig neue und überarbeitete Versionen. In der nachfolgenden Abbildung sind die aktuellen Distributionen ersichtlich.
 
-\begin{figure}[H]
+\begin{table}[H]
 	\centering
 	\includegraphics[width=0.4\textwidth]{resources/rosdistos.PNG}
 	\caption[aktuelle Distributionen von ROS]{aktuelle Distributionen von ROS {\cite{ROSprojects}}}
 	\label{fig:rosdistros}
-\end{figure} 
+\end{table} 
 
-Die Empfehlung von ROS und diversen Literaturen liegt hierbei bei der neusten Distribution ROS "Kinetic Kame". \cite{ROSprojects} Es handelt sich hierbei um eine Langzeitversion von ROS, welche bis 2021 Unterstützung bietet. Im Zug der ersten Versuchen mit ROS wurde auf einem Laptop mit AMD64-Architektur gearbeitet. Auf diesem wurde ROS Kinetic Kame vollumfänglich ermöglicht. Für das 3D-Lasermodul wird jedoch ein einbaubarer Einplatinencomputer benötigt, welche im \ref{sec:Datenverarbeitung} genauer betrachtet werden. 
+Die Empfehlung von ROS und diversen Literaturen liegt hierbei bei der neusten Distribution ROS "Kinetic Kame". \cite{ROSprojects} Es handelt sich hierbei um eine Langzeitversion von ROS, welche bis 2021 Unterstützung bietet. Im Zug der ersten Versuchen mit ROS wurde auf einem Laptop mit AMD64-Architektur gearbeitet. Auf diesem wurde ROS Kinetic Kame vollumfänglich ermöglicht. Damit das 3D-Lasermodul selbständig agieren kann, wird jedoch ein einbaubarer Einplatinencomputer benötigt, die in Unterkapitel \ref{sec:Datenverarbeitung} genauer betrachtet werden. 
 
-Während der Einarbeitung mit Kinetik Kame konnten einige Nachteile der Distribution festgestellt werden. Es wurde festgestellt, dass diverse Packages nur für AMD64-Architekturen zur Verfügung stehen und nicht für ARM-Architekturen. Dies ist ein wesentlicher Nachteil, da die meisten Einplatinencomputer mit ARM-Architekturen arbeiten.
+Während der Einarbeitung mit Kinetik Kame konnten einige Nachteile der Distribution festgestellt werden. Es wurde festgestellt, dass diverse Packages nur für \ac{AMD64}-Architekturen zur Verfügung stehen und nicht für \ac{ARM}-Architekturen. Dies ist ein wesentlicher Nachteil, da die meisten Einplatinencomputer mit \ac{ARM}-Architekturen arbeiten.
 
 \subsection{Velodyne Package}
 Wie bereits im vorherigen Kapitel erwähnt, besitzt ROS ein Treiber-Package für den Velodyne VLP-16. In der Abbildung \ref{fig:rosgraph} ist der Aufbau dieses Treibers mit dem ROS-Tool rqt-graph visualisiert. 
@@ -139,11 +144,11 @@ Wie bereits im vorherigen Kapitel erwähnt, besitzt ROS ein Treiber-Package für
 
 Dieses Package vereinfacht die Sensordatenverarbeitung bedeutend. Mittels dem Package werden die hexadezimalen Rohdaten von den Ethernet-Datenpaketen aus Abbildung \ref{fig:datapakets} bereits ausgewertet und kalibriert zur Verfügung gestellt. Dabei laufen mehrere Programmsegmente (\textit{Nodes}) parallel. 
 
-Für die Aufgabenstellung ist nur der Node velodyne\_packets relevant, da dieser den verarbeiteten Sensor-Datenstream zur Verfügung stellt. Es werden dabei zwei unterschiedlich Typen von \textit{Messages} kontinuerlich ausgegeben \textit{(published)}. Die Message \textit{velodyne\_packets (vom Typ: velodyne\_ msgs/VelodyneScan)} beinhaltet die Rohdaten eines einzelnen Lasertrahls. Die Message \textit{velodyne\_points (vom Typ: sensor\_msgs/PointCloud2)} beinhaltet die angesammelten Datenpunkte, welche bereits räumliche zu einem festen Koordinatensystem fixiert sind. 
+Für die Aufgabenstellung ist nur der Node velodyne\_packets relevant, da dieser den verarbeiteten Sensor-Datenstream zur Verfügung stellt. Es werden dabei zwei unterschiedlich Typen von \textit{Messages} kontinuerlich ausgegeben \textit{(published)}. Die Message \textit{velodyne\_packets (vom Typ: velodyne\_ msgs/VelodyneScan)} beinhaltet die Rohdaten eines einzelnen Lasertrahls. Die Message \textit{velodyne\_points (vom Typ: sensor\_msgs/PointCloud2)} beinhaltet die angesammelten Datenpunkte, welche bereits räumliche zu einem festen Koordinatensystem fixiert sind. \cite{ROSvelodyne}
 
-Das Package bietet somit die Abstraktion der Datenerfassung und Integration in ein festes Koordination. Werden die PointCloud2 Messages zusammengefügt und mittels Koordinatentransformation räumliche angepasst, lässt sich somit eine Umgebungsabbildung erzeugen. 
+Das Package bietet die Abstraktion der Datenerfassung und Integration in ein festes Koordination. Werden die PointCloud2 Messages zusammengefügt und mittels Koordinatentransformation räumliche angepasst, lässt sich somit eine Umgebungsabbildung erzeugen. 
 
-Mittels dem ROS-Tool Rviz lässt sich der Datenstream über velodyne\_packets direkt visualisieren. In Abbildung \ref{fig:rviz} ist ein statischer Datenstream visualisiert. Dies geschieht indem das Tool kontinuierlich die Messages empfängt. \textit{(subscribed)}. ROS bietet zudem die Möglichkeit über den \textit{rosbag} Befehl, Messungen aufzunehmen und abzuspeichern. Dies ermöglicht somit nicht nur den aktuellen Sensordatenstream zu visualisieren, sondern auch getätigte Messungen zu archivieren.
+Mittels dem ROS-Tool Rviz lässt sich der Datenstream über velodyne\_packets direkt visualisieren. In Abbildung \ref{fig:rviz} ist ein statischer Datenstream visualisiert. Dies geschieht indem das Tool kontinuierlich die Messages empfängt. \textit{(subscribed)}. 
 
 \begin{figure}[H]
 	\centering
@@ -151,6 +156,8 @@ Mittels dem ROS-Tool Rviz lässt sich der Datenstream über velodyne\_packets di
 	\caption[PointCloud2 Datenstream mit Rviz]{PointCloud2 Datenstream mit Rviz}
 	\label{fig:rviz}
 \end{figure} 
+
+ROS bietet zudem die Möglichkeit über den \textit{rosbag} Befehl, Messungen aufzunehmen und abzuspeichern. Dies ermöglicht somit nicht nur den aktuellen Sensordatenstream zu visualisieren, sondern auch getätigte Messungen zu archivieren \cite{ROSTutorials}. 
 
 \subsection{Schlussfolgerung}
 Für die Aufgabenstellung eignet sich ROS gut wegen den bereitstehenden Tools und den Packages, mit denen grosser Teil der Software abstrahiert werden kann. Der aktuelle Code muss um einige Nodes erweitert werden, damit die einzelnen Sensordaten einerseits auf die aktuelle Position verschoben werden und anderseits müssen diese zusammengefügt werden zu einer einzigen Punktwolke. Die Einarbeitung mit ROS ist jedoch relativ umfangreich und bietet eine Vielzahl an Tools die zuerst kennen gelernt werden müssen.  
@@ -161,7 +168,7 @@ Um die Datenmenge zu verarbeiten und die Ansteuerung der Komponenten zu realisie
 
 \subsection{Raspberry Pi 2 \& 3}
 \label{subsec:Raspberry}
-Das Raspberry Pi ist eines der bekanntesten Einplatinencomputer und bietet daher eine grosse Community. Da bereits ein Raspberry Pi 2 zur Verfügung gestanden ist, konnten die ersten Erfahrungen mit einem Raspberry Pi gemacht werden. Das Raspberry bietet zusammen mit ROS Kinetic Kame und Ubuntu Mate LTS 16.04 eine funktionsfähige Lösung für die Datenverarbeitung. Das Raspberry Pi 2 bzw. 3 basiert auf einem Broadcom \ac{SOC} und ist mit einem \ac{ARM} Cortex A7 bzw. A53 Prozessor mit vier Kernen ausgestattet. Die Taktfrequenz liegt bei diesen lediglich bei 1.2 GHz. Beide Modelle besitzen 1 GB \ac{RAM}. Das Betriebssystem wird auf einer \ac{SD}-Card gebootet. Speichermöglichkeiten sind über USB oder die SD-Karte vorhanden. Auch GPIOs und eine Ethernetschnittstelle sind beim Raspberry Pi vorhanden. Der Preis eines Raspberry Pi liegt momentan bei ca 50 Fr. \cite{rpi}
+Das Raspberry Pi ist eines der bekanntesten Einplatinencomputer und bietet daher eine grosse Community. Da bereits ein Raspberry Pi 2 zur Verfügung gestanden ist, konnten die ersten Erfahrungen mit einem Raspberry Pi gemacht werden. Das Raspberry bietet zusammen mit ROS Kinetic Kame und Ubuntu Mate LTS 16.04 eine Lösung für die Datenverarbeitung. Das Raspberry Pi 2 bzw. 3 basiert auf einem Broadcom \ac{SOC} und ist mit einem \ac{ARM} Cortex A7 bzw. A53 Prozessor mit vier Kernen ausgestattet. Die Taktfrequenz liegt bei diesen lediglich bei 1.2 GHz. Beide Modelle besitzen 1 GB \ac{RAM}. Das Betriebssystem wird auf einer \ac{SD}-Card gebootet. Speichermöglichkeiten sind über USB oder die SD-Karte vorhanden. Auch GPIOs und eine Ethernetschnittstelle sind beim Raspberry Pi vorhanden. Der Preis eines Raspberry Pi liegt momentan bei ca 50 Fr. \cite{rpi}
 
 \subsection{Banana Pi M3}
 \label{subsec:BananaPi}
@@ -169,11 +176,11 @@ Der Banana Pi M3 bietet zur Zeit (Stand Oktober 2017) die höchste Performance b
 
 \subsection{Odroid C2 \& XU4} 
 \label{subsec:Odroid}
-In diversen Literaturen (siehe \cite{ROSprojects} Kapitel 4) werden neben dem Raspberry Pi, Odroid Boards als empfohlene Einplatinencomputer aufgelistet. Dabei stehen die aktuelle Modelle Odroid-C2 oder Odroid-XU4 zur Verfügung. Sie bieten eine höhere Prozessorleistung, 1.5 GHz bzw. 2 GHz mit je 2 Gigabyte \ac{RAM}. Betribssysteme können via \ac{SD} oder \ac{eMMC} gebootet werden. Beide Boards sind jedoch noch nicht lange auf dem Markt und bieten in vielen Anwendungen nur Beta-Versionen. Vor allem die Unterstützung von Ubuntu LTS 16.04 ist nicht restlos geklärt. Der Preis dieser Boards ist ca. 80 - 90 Franken. \cite{rpi}
+In diversen Literaturen (siehe \cite{ROSprojects} Kapitel 4) werden neben dem Raspberry Pi, Odroid Boards als empfohlene Einplatinencomputer aufgelistet. Dabei stehen die aktuelle Modelle Odroid-C2 oder Odroid-XU4 zur Verfügung. Sie bieten eine höhere Prozessorleistung, 1.5 GHz bzw. 2 GHz mit je 2 Gigabyte \ac{RAM}. Betriebssysteme können via \ac{SD} oder \ac{eMMC} gebootet werden. Beide Boards sind jedoch noch nicht lange auf dem Markt und bieten in vielen Anwendungen nur Beta-Versionen. Vor allem die Unterstützung von Ubuntu LTS 16.04 ist nicht restlos geklärt. Der Preis dieser Boards ist ca. 80 - 90 Franken \cite{rpi}.
 
 \subsection{Up Board Squared} 
 \label{subsec:Up Board Squared}
-Der Up Board Squared Einplatinencomputer unterscheidet sich wesentlich von den bisherig betrachteten Boards. Der Prozessor arbeitet nicht mit ARM-Architektur, sondern mit AMD64-Architektur. Somit können Ubuntu und ROS Distributionen voll umfänglich genutzt werden. Es besitzt mit Intel Pentium ein vier kerniger Prozessor und taktet mit 2.5 GHz. Zusätzlich bietet es einen separaten 500 MHz \ac{GPU} und bis zu 8 GB \ac{RAM}. Es besitzt neben USB, zwei RJ45-Schnittstelle und auch ein GPIO Pin Layout, welches dem des Raspberry Pis entspricht. Das Up Board Squared bietet sich an, falls die Performance und die Kompatibilität der ARM-Architektur mit ROS nicht ausreicht. Der Preis eines Up Board Squared kostet je nach Ausführung zwischen 180-380 Fr.
+Der Up Board Squared Einplatinencomputer unterscheidet sich wesentlich von den bisherig betrachteten Boards. Der Prozessor arbeitet nicht mit \ac{ARM}-Architektur, sondern mit \ac{AMD64}-Architektur. Somit können Ubuntu und ROS Distributionen voll umfänglich genutzt werden. Es besitzt mit Intel Pentium ein vier kerniger Prozessor und taktet mit 2.5 GHz. Zusätzlich bietet es einen separaten 500 MHz \ac{GPU} und bis zu 8 GB \ac{RAM}. Es besitzt neben USB, zwei RJ45-Schnittstelle und auch ein GPIO Pin Layout, welches dem des Raspberry Pis entspricht. Das Up Board Squared bietet sich an, falls die Performance und die Kompatibilität der ARM-Architektur mit ROS nicht ausreicht. Der Preis eines Up Board Squared kostet je nach Ausführung zwischen 180-380 Fr.
 
 \subsection{Schlussfolgerung}
 \label{subsec:Schlussfolgerung}
@@ -216,7 +223,7 @@ Eine weitere Möglichkeit ist die Aneinanderreihung dieser Sensoren. Dies bietet
 	\label{fig:Encoder}
 \end{figure} 
 
-Auch diese Variante ist stark abhängig vom Umgebungslicht und zusätzlich können die einzelnen Sensoren einander durch Streuung beeinflussen. Um dies zu minimieren sollte eine solche Variante mittels Gray-Code realisiert werden, damit nur immer eine gleichzeitige Zustandsänderung stattfindet. Die Abtastung der Zustände müsste nach dem Nyquist-Shannon-Abtasttheorem mit mindestens doppelter Abtastfrequenz gemessen werden
+Auch diese Variante ist stark abhängig vom Umgebungslicht und zusätzlich können die einzelnen Sensoren einander durch Streuung beeinflussen. Um dies zu minimieren sollte eine solche Variante mittels Gray-Code realisiert werden, damit nur immer eine gleichzeitige Zustandsänderung stattfindet. Die Abtastung der Zustände muss nach dem Nyquist-Shannon-Abtasttheorem mit mindestens doppelter Abtastfrequenz gemessen werden.
  
 \section{Speisung und Verkabelung}
 \label{sec:Speisung und Verkabelung}
@@ -234,9 +241,9 @@ Der Abwärtswandler D24V50F5 von Pololu eignet sich sehr gut für die Stromverso
 	\label{fig:D24V50F5}
 \end{figure}
 
-\subsection{Schleifring}
+\subsection{Ethernet Schleifring}
 \label{subsec:Schleifring}
-Da übliche Kabel nur für einige wenige Verdrehungen ausgelegt sind und so bei endlos drehenden Vorrichtungen kaputt gehen, werden Schleifring als Drehübertrager eingesetzt. Ein Schleifring überträgt das Eingangssignal über eine Bürste und bildet somit einen Gleitkontakt. Da vermehrt nicht nur Speisung, sondern auch Datenübertragung über Schleifringe geführt werden, wächst dieses Sortiment stetig. Es gibt bereits einige wenige Hersteller aus dem amerikanischen und asiatischen Markt, welche Ethernet-Übertagunger vertreiben. Ein Ethernet-Schleifring, der zusätzlich Leistungsübertragung bis 5A zulässt kostet nach Abklärungen bei diversen Herstellern zwischen 120 - 600 Fr.  
+Da übliche Kabel nur für einige wenige Verdrehungen ausgelegt sind und so bei endlos drehenden Vorrichtungen kaputt gehen, werden Schleifring als Drehübertrager eingesetzt. Ein Schleifring überträgt das Eingangssignal über eine Bürste und bildet somit einen Gleitkontakt. Da vermehrt nicht nur Speisung, sondern auch Datenübertragung über Schleifringe geführt werden, wächst dieses Sortiment stetig. Es gibt bereits einige wenige Hersteller aus dem amerikanischen und asiatischen Markt, welche Ethernet-Übertagunger vertreiben. Ein Ethernet-Schleifring, der zusätzlich Leistungsübertragung bis 5 Ampere zulässt kostet nach Abklärungen bei diversen Herstellern zwischen 120 - 600 Fr.  
 
 \subsection{Ethernet Switch}
 \label{subsec:Ethernetswitch}

@@ -1,10 +1,10 @@
 \chapter{Konzeption}
 \label{chap:Konzeption}
-Dieses Kapitel beschreibt die Resultate und Ergebnisse aus der Konzeptionsphase. Nachfolgend werden auf die verschiedenen Konzeptionsvarianten eingegangen. Dabei werden Überlegungen und Bezüge zur Aufgabenstellung gemacht. Jede Variante wird abschliessend mit einem kurzen Fazit beurteilt. Danach wird in einem morphologischen Kasten 
+Dieses Kapitel beschreibt die Resultate und Ergebnisse aus der Konzeptionsphase. Nachfolgend werden auf die verschiedenen Konzeptionsvarianten eingegangen. Dabei werden Überlegungen und Bezüge zur Aufgabenstellung gemacht. Die Varianten werden abschliessend mit einem kurzen Fazit beurteilt. Danach wird mit einem morphologischen Kasten die Komponenten evaluiert für das gewählte Konzept. 
 
 \section{Konzeptionsgrundlage}
 \label{sec:Konzeptiongrund}
-Als Konzeptionsgrundlage dient das Pflichtenheft, welches im Anhang \ref{Pflchtenheft} einsehbar ist. Wie darin erwähnt, soll das Modul möglichst frei drehend konzipiert werden. Dies ist das ausschlaggebendste Kriterium für die Bauform des Moduls. Da der Velodyne VLP-16, wie in Kapitel \ref{subsec:Velodyne} erläutert, einen begrenzten vertikalen Öffnungswinkel besitzt, wurde bei den folgenden Konzepten die Möglichkeit eines beweglichen Moduls geprüft. Durch eine grösseren Öffnungswinkel kann während der Bewegung der Raum besser ausgemessen werden. Ein weiteres relevantes Kriterium ist die Einsatzmöglichkeit des Modul. Es soll einerseits auf dem Packbot, sowie auch als eigenständiges Produkt funktionieren. Daher sind als Schnittstellen einen Speiseanschluss, welcher 12 Volt Gleichstrom liefert und eine Ethernet RJ45-Anschluss nötig. Nachfolgend sind auf diesen Grundlagen drei Varianten dargelegt.
+Als Konzeptionsgrundlage dient das Pflichtenheft, welches im Anhang \ref{Pflichtenheft} einsehbar ist. Wie darin erwähnt, soll das Modul möglichst frei drehend konzipiert werden. Dies ist das ausschlaggebendste Kriterium für die Bauform des Moduls. Da der Velodyne VLP-16, wie in Kapitel \ref{subsec:Velodyne} erläutert, einen begrenzten vertikalen Öffnungswinkel besitzt, wurde bei den folgenden Konzepten die Möglichkeit eines beweglichen Moduls geprüft. Durch eine grösseren Öffnungswinkel kann während der Bewegung der Raum besser ausgemessen werden. Ein weiteres relevantes Kriterium ist die Einsatzmöglichkeit des Modul. Es soll einerseits auf dem Packbot, sowie auch als eigenständiges Produkt funktionieren. Daher sind als Schnittstellen einen Speiseanschluss, welcher 12 Volt Gleichstrom liefert und eine Ethernet RJ45-Anschluss nötig. Nachfolgend sind auf diesen Grundlagen drei Varianten dargelegt.
 
 \section {Variante 1: Plattform}
 \label{sec:var1}
@@ -30,8 +30,7 @@ Die Variante 1: Plattform ist in der Skizze in Abbildung \ref{fig:plattform} ers
  
  Hauptproblematik bei dieser Konzeption ist die zusätzlich nötige Sensorik. Durch die Neigung der Plattform kann ohne zusätzliche Sensorik nicht auf die Messausrichtung zurück geschlossen werden. Dies erschwert die Visualisierung der 3D-Laserscanner Messdaten. Die Plattform müsste mittels einer eigenen \ac{IMU}, welche aus Gyrosensor, Accelerometer und Magnetometer besteht, erweitert werden. Zusätzlich ist die Realisierung der Konzeption sehr stark abhängig von den mechanischen Komponenten, da die Verbindungsstifte von Servomotor und Grundplatte die Winkeländerung festlegen.
  
- Während der Besprechung mit Herr Jensen vom 14.10.2017 wurde diese Konzeption verworfen und nicht mehr weiter vertieft.
- 
+
 \section {Variante 2: Turm stationär}
 \label{sec:var2}
 Das zweite Konzept ist eine turmartige Konstruktion, die in Abbildung \ref{fig:skizze_unrotierend} dargestellt ist. Die Idee dazu lieferte das Unterkapitel \ref{subsec:IMM} aus dem Kapitel Informationsbeschaffung. Dabei befindet sich der Velodyne VLP-16 abgesetzt von den elektrischen Komponenten in der Höhe.
@@ -67,7 +66,7 @@ Dies wurde ermöglicht indem alle mechanischen Drehkomponenten und der Motor umg
 	\label{fig:skizze_rotierend}
 \end{figure} 
 
-Diese Variante bietet jedoch den Nachteil das der Schleifring bedeutend mehr belastet wird. Da alle Komponenten über den Schleifring gespiesen werden, müsste eine sorgfältige Berechnung der Strom- und Spannungswerte erfolgen, damit der Schleifring entsprechend ausgelegt wird.
+Diese Variante bietet jedoch den Nachteil das der Schleifring bedeutend mehr belastet wird. Da alle Komponenten über den Schleifring gespieist werden, müsste eine sorgfältige Berechnung der Strom- und Spannungswerte erfolgen, damit der Schleifring entsprechend ausgelegt wird.
 
  \section {Konzeptfazit}
  \label{sec:Konzeptfazit}
@@ -78,12 +77,12 @@ Diese Variante bietet jedoch den Nachteil das der Schleifring bedeutend mehr bel
 \label{sec:ausgewählteKomponenten}
 Dieses Kapitel beschreibt die evaluierten Komponenten für die verschieden Teilfunktionen. Die Teilfunktionen wurden bereits im  Kapitel \ref{Informationsbeschaffung} Informationsbeschaffung unterteilt. Für die Entfernungsmessung ist der Velodye VLP-16 vorgegeben. Als Software wurde Ubuntu LTS 16.04 mit ROS Kinetic Kame gewählt. Die Gründe dazu wurden bereits im Unterkapitel \ref{sec:Software} erläutert. Die weiteren Teilfunktionen werden im nachfolgenden morphologischen Kasten gegenübergestellt und danach ausgewählt.
 
-\begin{figure}[H]
+\begin{table}[H]
 	\centering
 	\includegraphics[,width=1\textwidth]{resources/morph.PNG}
 	\caption[Morphologischer Kasten]{Morphologischer Kasten}
 	\label{fig:morph}
-\end{figure} 
+\end{table} 
 
 
 \subsection{Datenverarbeitung: Raspberry Pi 3}
@@ -92,22 +91,23 @@ Im Unterkapitel \ref{sec:Datenverarbeitung} wurden bereits diverse Einplatinenco
 \subsection{Antrieb: Pololu 25Dx56L}
 \label{subsec:pololu}
 Schrittmotoren mit Absolutencoder wurden aus Kostengründen in der Evaluation ausgeschlossen. Reine Schrittmotoren sind für die Aufgabenstellung ebenfalls geeignet. Lediglich die Schrittverluste können einen integrierenden Fehler verursachen. Daher wurde für die Aufgabenstellung ein Gleichstrommotor gewählt. Der Pololu 25Dx52 ist ein kompakter 12 Volt Gleichstrommotor mit integriertem 48 \ac{CPR} Encoder. 
-D.h. es werden pro Umdrehung 48 Zustände evaluiert, wenn die zwei vorhandenen Hallsensoren verwendet werden. Durch die interne Übersetzung von 46.85:1 ergeben sich 2248.86 CPR. Es ergibt sich somit die folgende Auflösung $\frac{360^\circ}{2248.86}$ = 0.160081$^\circ$. 
+D.h. es werden pro Umdrehung 48 Zustände evaluiert, wenn die zwei vorhandenen Hallsensoren verwendet werden. Durch die interne Übersetzung von 46.85:1 ergeben sich 2248.86 CPR. Daraus ergibt sich somit die folgende Auflösung $\frac{360^\circ}{2248.86}$ = 0.160081$^\circ$. 
 
-In einem Messaufbau wurde der Motor angesteuert und ausgetestet. Die zwei Hallsensoren werden über 5 Volt gespeist und über zwei GPIOs auf die die fallenden und Steigende Flanke getriggert. In einer Callback Funktion werden diese Flanken gezählt und über das Verhältnis der aktuelle Winkel eruiert. Die maximale Umdrehungszahl des Motors ist 110 RPM. Durch das lineare Verhalten eines Gleichstrommotors kann durch den Tastgrad eines \ac{PWM} die Umdrehungsgeschwindigkeit variiert werden. 
+In einem Messaufbau wurde der Motor angesteuert und ausgetestet. Die zwei Hallsensoren werden über 5 Volt gespeist und über zwei GPIOs auf die die fallenden und Steigende Flanke getriggert. In einer Callback Funktion werden diese Flanken gezählt und über das Verhältnis der aktuelle Winkel eruiert. Die maximale Umdrehungszahl des Motors ist 110 RPM. Durch das lineare Verhalten eines Gleichstrommotors kann durch den Tastgrad eines \ac{PWM} die Umdrehungsgeschwindigkeit mit einem Motorentreiber eingestellt werden. 
 
 \subsection{Positionsbestimmung: Fairchild QR1113}
 \label{subsec:QR1113}
-Da die inkrementelle Winkeländerung mittels dem Pololu 24Dx56 eruiert werden kann, benötigt es für die Positionsbestimmung lediglich einen definierten Nullpunkt. Der Absolutencoder mit einem QRRE1113 Array fällt für diese Funktion aus. Um eine Auflösung wie im vorherigen Kapitel zu erreichen benötigte es 11 dieser Sensoren. (2$^11$ Zustände = 2048). Einerseits werden dazu viele GPIOS benötigt und anderseits ergibt sich durch den Mindestabstand von 4mm der Sensoren eine grosse Dimension des Drehencoders. 
-In einem Messversuch wurde mit einem \ac{KO} das Verhalten der LED/Photodiode-Variante und eines einzelnen QRE1113 ausgetestet. Dabei konnte festgestellt werden, dass mit dem QRE1113 eine bessere Trennschärfe erreicht wird. Dies ist auf das Streulicht der LEd zurück zu führen. Der QRE1113 kann bei einem Abstand von 2-3mm von der Oberfläche eine praktisch binäre schwarz/weiss Detektion eruierern. Daher wurde die Varinate der Nullposition mit dem Fairchild QR1113 evaluiert.
+Da die inkrementelle Winkeländerung mittels dem Pololu 24Dx56 eruiert werden kann, benötigt es für die Positionsbestimmung lediglich einen definierten Nullpunkt. Der Absolutencoder mit einem QRE 1113 Array fällt für diese Funktion aus. Um eine Auflösung wie im vorherigen Kapitel zu erreichen benötigte es 11 dieser Sensoren. (2$^{11}$ Zustände = 2048). Einerseits werden dazu viele GPIOs benötigt und anderseits ergibt sich durch den Mindestabstand von 4mm zwischen den Sensoren eine grosse Dimension des Drehencoders. Die Dimension enstprich einem Hohlzylinder mit Außendurchmesser 10 cm.
+In einem Messversuch wurde mit einem \ac{KO} das Verhalten der LED/Photodiode-Variante und eines einzelnen QRE 1113 ausgetestet. Dabei konnte festgestellt werden, dass mit dem QRE1113 eine bessere Trennschärfe erreicht wird. Dieser Sensor kann bei einem Abstand von 2-3mm von der Oberfläche eine praktisch binäre schwarz/weiss Detektion eruieren. Daher wurde die Variante der Nullposition mit dem Fairchild QR1113 evaluiert.
 
 \subsection{Drehübertager: Senring SNE01-24GV}
 \label{subsec:SNE01}
-Wie bereits in Unterkapitel \ref{subsec:Schleifring} erläutert ist die Auswahl von Ethernet-Schleifringen bisher noch klein. Es wurde der SENRING SNE01-24GV für die Aufgabenstellung evaluiert. Dieser Schleifring ist einerseits mit 120 Fr. der kostengünstigste Schleifring und bietet die erforderlichen Übertagungsmöglichkeiten von Ethernet. Der Schleifring MOOG SRA-73979 und LTN Precision ESE264 sind mit 435 Fr. bzw. 610 Fr. bedeutend teurer. Zusätzlich besitzt der evaluierte Schleifring acht weitere Kabeldurchführungen, von denen zwei Kabel mit 5 Ampere und sechs Kabel mit 2 Ampere belastet werden können.\cite{senring}
+Wie bereits in Unterkapitel \ref{subsec:Schleifring} erläutert ist die Auswahl von Ethernet-Schleifringen bisher noch klein. Es wurde der Senring SNE01-24GV für die Aufgabenstellung evaluiert. Dieser Schleifring ist einerseits mit 120 Fr. der kostengünstigste Schleifring und bietet die erforderlichen Übertagungsmöglichkeiten von Ethernet. Der Schleifring MOOG SRA-73979 und LTN Precision ESE264 sind mit 435 Fr. bzw. 610 Fr. bedeutend teurer. Zusätzlich besitzt der evaluierte Schleifring acht weitere Kabeldurchführungen, von denen zwei Kabel mit 5 Ampere und sechs Kabel mit 2 Ampere belastet werden können.\cite{senring}
 
 \section{Zwischenfazit}
 \label{ZwischenfazitKonz}
-Die evaluierten Komponenten wurden in einigen Messversuchen ausgetestet und für die Aufgabenstellung als geignet beurteilt.  
+Die evaluierten Komponenten wurden in einigen Messversuchen ausgetestet und für die Aufgabenstellung als geignet beurteilt. Durch die Sensorkombination kann mit enstsprechender Logik die aktuelle Position ermittelt. Dies ist das wichtigste Kriterium für eine erfolgreiche Softwareimplementation. Die Dimension des Prototypen sind grösstenteils durch die evaluierten Komponenten gegeben. Einzige Verbesserung des Konzepts ist die Lage des Velodyne VLP-16. Wird dieser im Drehpunkt befestigt kann die Differenz zur Drehachse vernachlässigt und somit ein Messfehler kompensiert werden.
+\todo{Erklärung weshalb Aufwand für mechanik gerechtfertigt} 
 
 
 
