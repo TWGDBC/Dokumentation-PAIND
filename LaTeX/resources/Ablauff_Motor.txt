@@ -1,0 +1,7 @@
+@startuml
+digraph G {
+    GPIO_Initialiserung -> Drehung_zu_Nullpunkt
+    Drehung_zu_Nullpunkt ->Nullpunkt_erkannt
+    Nullpunkt_erkannt ->Start_Messung
+} 
+@enduml

@@ -48,15 +48,29 @@ Die Nullposition wird mittels dem QRE 1113 und einem Hohlzylinder detektiert. De
 	\label{fig:Nullposition}
 \end{figure} 
 
-In der Konzeption wurde ein Gleichstrommotor der Marke Pololu für den Antrieb ausgewählt (siehe Unterkapitel \ref{subsec:Gleichstrommotor}). Während der Realisierung wurden sehr spät (Kalenderwoche 11) bedeutende Fehlverhalten des Motors festgestellt. Während den Leerlaufmessungen (Kalenderwoche 7) konnten keine Abweichungen der Encodersignale festgestellt werden. Nach dem Verbauen des Gleichstrommotors entsprachen die Encoder-Signale nicht den zu erwartenden Ergebnissen. Die Messwerte weichen mit bis zu 200 \ac{CPR}, welches umgerechnet ca. 36$^\circ$ ist vom Sollwert von 2248 ab. Dies verursacht unbrauchbare Resultate beim zusammenfügen der Punktwolken. Der Motor besitzt zusätzlich eine nicht nachvollziehbares Fehlverhalten. In einer Messung des Motorentreibers wurde ein fehlerfreies \ac{PWM} ausgemessen und auch die nötigen Strom- (1 Ampere) und Spannungswerte (12 Volt) verifiziert. Dennoch blockiert der Motor kurzzeitig willkürlich bei verschiedenen Drehpositionen. Dieses Fehlverhalten könnte auf ein internen Getriebedefekt zurück zu führen sein. Ursache für dieses Verhalten kann die Befestigungsschraube sein, welche bei der Montage hinein gedreht wurde. 
+In der Konzeption wurde ein Gleichstrommotor der Marke Pololu für den Antrieb ausgewählt (siehe Unterkapitel \ref{subsec:Gleichstrommotor}). Während der Realisierung wurden sehr spät (Kalenderwoche 11) bedeutende Fehlverhalten des Motors festgestellt. Während den Leerlaufmessungen (Kalenderwoche 7) konnten keine Abweichungen der Encodersignale festgestellt werden. Nach dem Verbauen des Gleichstrommotors entsprachen die Encoder-Signale nicht den zu erwartenden Ergebnissen. Die Messwerte weichen mit bis zu 200 \ac{CPR}, welches umgerechnet ca. 36$^\circ$ ist vom Sollwert von 2248 ab. Dies verursacht unbrauchbare Resultate beim zusammenfügen der Punktwolken. Der Motor besitzt zusätzlich eine nicht nachvollziehbares Fehlverhalten. In einer Messung des Motorentreibers wurde ein fehlerfreies \ac{PWM} ausgemessen und auch die nötigen Strom- (1 Ampere) und Spannungswerte (12 Volt) verifiziert. Dennoch blockiert der Motor kurzzeitig willkürlich bei verschiedenen Drehpositionen. Dieses Fehlverhalten könnte auf ein internen Getriebedefekt zurück zu führen sein. Ursache für dieses Verhalten kann die Befestigungsschraube sein, welche bei der Montage hinein gedreht wurde. Aufgrund längerer Lieferfrist wurde darauf verzichtet den identischen Gleichstrommotor zu bestellen. 
 
-Aus den erwähnten Gründen wurde schnellst möglichst eine Alternative eruiert. Bei der Alternative handelt es sich um einen Schrittmotor der Marke Trinamic. Dieser Motor wurde aus Gründen der Verfügbarkeit und aus bereits bestehenden Kenntnissen über dessen Funktionsweise ausgewählt. Mit diesem Schrittmotor ist es möglich eine gleichmässige Umdrehungsgeschwindigkeit zu erreichen. 
-
-Die Software wurde auf die neue Konfiguration angepasst und ist in Abschnitt \ref{subsec:Ansteuerung} erläutert. Es werden mittels 1/16 Schritte insgesamt 3200 Schritte für eine Umdrehung bei diesem Motor benötigt. Daraus ergibt sich mit der Übersetzung eine maximale Auflösung von $\frac{360^\circ}{1.5 * 3200}$ = 0.075$^\circ$. 
-\todo{schrittverluste}
+Aus den erwähnten Gründen wurde schnellst möglichst eine Alternative eruiert. Bei der Alternative handelt es sich um einen Schrittmotor der Marke Trinamic. Dieser Motor wurde aus Gründen der Verfügbarkeit und aus bereits bestehenden Kenntnissen über dessen Funktionsweise ausgewählt. Mit diesem Schrittmotor ist es möglich eine gleichmäßige Umdrehungsgeschwindigkeit zu erreichen. Der Schrittmotor benötigt 200 Schritte für eine Umdrehung, sofern kein \ac{Mikrostepping} Aus den getätigten Schritten kann der aktuelle Winkelposition ermittelt werden. Detaillierte Erläuterungen folgen im nächsten Kapitel.
 
 \section{Software}
 \label{sec:SoftwareReal}
+Dieser Abschnitt erläutert die wichtigsten Elemente der Softwareimplementierung. Die Software wurde in einem eigenen Package namens Laser\_3D erarbeitet und besitzt mehrere C++ und Python Files. Im digitalen Anhang ist das gesamte Package einsehbar.
+
+\subsection {Ansteuerung mittels GPIO}
+\label{subsec:Ansteuerung}
+Wie bereits erwähnt, wurde für das Drehen des Turm ein Schrittmotor der Marke Trinamic verwendet. Dieser wird über einen Motorentreiber A4988 angesteuert. Es werden mittels 1/16 Schritte insgesamt 3200 Schritte für eine Umdrehung benötigt. Daraus ergibt sich mit der Übersetzung eine maximale Auflösung von $\frac{360^\circ}{1.5 * 3200}$ = 0.075$^\circ$. Die 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{resources/GPIO_Ansteuerung.png}
+	\caption{Ablaufdiagramm der GPIO-Ansteuerung}
+	\label{fig:state_machine}
+\end{figure} 
+
+Die Ansteuerung wird mit einem Python Script ausgeführt. Dies besitzt den Vorteil, dass die GPIOs mit dem Python Package RPi.GPIO 0.6.3 einfach angesteuert werden können. Die Ansteuerung verläuft mit einer endlosen \ac{State-Machine}. Dabei werden die benötigten GPIOs initialisiert. Danch wird der Schrittmotor schrittweise angesteuert, bis dieser sich beim Nullpunkt befindet. Über eine Konsoleneingabe wird der Messvorgang gestartet und der Schrittmotor wird mit eingestellen Umdrehungsgeschwindikeit gedreht.
+ 
+\subsection{Softwareaufbau}
+\label{subsec:Softwareaufbau}
 Wie bereits im Kapitel \ref{sec:Software} erläutert, wird durch das Velodyne Package ein grosser Teil der Aufgabenstellung bereits abstrahiert. Die einzelnen Aufgabenblöcke wurden nochmals unterteilt und sind in Abbildung \ref{fig:software_flow} dargestellt. Einerseits ist es nötig den Datenstream in einem weiteren Node zu empfangen und anderseits muss die Position ermittelt werden. Diese beiden Daten werden im Node \textit{/velodyne\_combined} zusammengefügt. Sobald die Daten kombiniert werden können, muss in einem weiteren Schritt die kombinierten Daten in einem Container gespeichert werden und bei Bedarf versendet.
 
 \begin{figure}[H]
@@ -68,30 +82,34 @@ Wie bereits im Kapitel \ref{sec:Software} erläutert, wird durch das Velodyne Pa
 
 Die Software wurde aufbauend konzipiert. Dabei wurde in einer ersten Phase das Empfangen und Weiterleiten mittels ROS \textit{Publisher und Subscriber} programmiert. In einem zweiten Schritt wurde die aktuelle Position mit den Daten kombiniert. In der letzte Phase wurde die Software mit dem Zusammenfügen der Datenpunkte zu einer Punktwolke erweitert. Wesentliche Codeausschnitte werden in den entsprechenden Unterkapiteln erläutert.
 
-In Abbildung \ref{fig:rqt_graph_erweitert_2} ist mit \textcolor{red}{roter} Umrandung die Softwareerweiterung ersichtlich. Diese wurde in einem eigenen Package namens Laser\_3D erarbeitet, das im digitalen Anhang zu finden ist. 
+In Abbildung \ref{fig:rqt_graph_erweitert_2} ist mit \textcolor{red}{roter} Umrandung die Softwareerweiterung ersichtlich. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\textwidth]{resources/rqt_graph_erweitert_2.png}
+	\includegraphics[width=0.8\textwidth]{resources/rqt_graph_erweitert_2.png}
 	\caption{Softwareerweiterung mit Laser\_3D}
 	\label{fig:rqt_graph_erweitert_2}
 \end{figure} 
 \subsection{Phase 1: Empfangen und Weitersenden}
 \label{subsec:Phase2}
-In dieser Phase wurden zu Beginn eine Programm implementiert, welche die Sensordaten (\textit{Messages}) empfängt und direkt wieder weiterleitet. Diese Funktion bietet das Grundgerüst für die weiteren Phasen. ROS bietet für diese Funtion zwei generische Klassen an. Der Publisher versendet Messages über sogenannte Topics, wie beispielsweise die \textit{velodyne\_points (vom Typ: velodyne\_msgs/PointCloud2)}. Subscriber können von Topics die Messages mittels einer Callback-Funktion an Variablen übergeben. Nachfolgend sind dazu die wesentlichsten Codeauschnitte wiedergegeben. \cite{pubsub} \todo{bilder schieben}
+In dieser Phase wurden zu Beginn eine Programm implementiert, welche die Sensordaten (\textit{Messages}) empfängt und direkt wieder weiterleitet. Diese Funktion bietet das Grundgerüst für die weiteren Phasen. ROS bietet für diese Funtion zwei generische Klassen an.  Nachfolgend sind dazu die wesentlichsten Codeauschnitte mit Erläuterung wiedergegeben. \cite{pubsub}
 
 \begin{figure}[H]
-	\includegraphics[width=0.62\textwidth]{resources/sourcecode/callback.png} \\
-	\includegraphics[width=0.9\textwidth]{resources/sourcecode/pubsub.png}
+
+	\includegraphics[width=1.0\textwidth]{resources/sourcecode/pubsub.png} \\
+	\\
+	\includegraphics[width=0.7\textwidth]{resources/sourcecode/callback.png} 
 	%\caption{zusammengefügte mechanische Komponenten}
 	\label{fig:pubsub}
 \end{figure} 
 
+Der Publisher versendet Messages über sogenannte Topics, wie beispielsweise die \textit{velodyne\_points (vom Typ: velodyne\_msgs/PointCloud2)}. Subscriber können von Topics die Messages mittels einer Callback-Funktion an Variablen übergeben.
+
 \subsection{Phase 2: Positionstransformation}
 \label{subsec:Phase}
 
-Der empfangene Sensorstream kann mit Koordinatentransformation in die aktuelle Position des Drehturms transformiert werden. Es wird an dieser Stelle für die nachfolgenden Betrachtungen kurz Bezug zu Koordinatentransformation genommen \cite{Koordinaten}.
-Es gelten für dreidimensionale Drehbewegungen folgende Matrizen:
+Der empfangene Sensorstream kann mit Koordinatentransformation in die aktuelle Position des Drehturms transformiert werden. Es wird an dieser Stelle für die nachfolgenden Betrachtungen kurz ein Exkurs zu Koordinatentransformation gemacht \cite{Koordinaten}.
+Es gelten für dreidimensionale Drehbewegungen folgende Matrizen:\\
 
 $R_x(\phi ) =\begin{bmatrix}
 	1&  0& 0\\ 
@@ -105,9 +123,9 @@ $R_x(\phi ) =\begin{bmatrix}
 	\cos\psi& \sin\psi  & 0 \\ 
 	-\sin\psi&  \cos\psi& 0 \\ 
 	0&  0& 1
-\end{bmatrix}$
+\end{bmatrix}$\\
 
-Mit dem Rollwinkel $R_x(\phi)$ \textit{(engl. roll)}, Nickwinkel $R_y(\theta )$ \textit{(engl. pitch)} und Gierwinkel $R_y(\theta )$ \textit{(engl. yaw)} können in die 3 Freiheitsgrade beliebige Transformationen statisch oder dynamisch vorgenommen werden. Alternative können die Bewegungen mittels \ac{Quaternionen} angegeben werden. In Abbildung \ref{fig:rollpitchyaw} sind die Drehbewegungen mit den Achsen visualisiert.
+Mit dem Rollwinkel $R_x(\phi)$ \textit{(engl. roll)}, Nickwinkel $R_y(\theta )$ \textit{(engl. pitch)} und Gierwinkel $R_y(\theta )$ \textit{(engl. yaw)} können ind die 3 Freiheitsgrade beliebige statische oder dynamsiche Transformationen vorgenommen werden. Alternative können die Bewegungen mittels \ac{Quaternionen} angegeben werden. In Abbildung \ref{fig:rollpitchyaw} sind die Drehbewegungen mit den Achsen visualisiert.
 
 \begin{figure}[H]
 		\centering
@@ -118,16 +136,16 @@ Mit dem Rollwinkel $R_x(\phi)$ \textit{(engl. roll)}, Nickwinkel $R_y(\theta )$ 
 
 ROS bietet die Möglichkeit mehrere Koordinatensysteme miteinander zu verlinken und über die Klassen \textit{TF Broadcaster} und \textit{TF Listener} die aktuellen Positionen zu versenden und empfangen. In einem separaten Programmsegment \textit{rotatingstage} (siehe Abbildung \ref{fig:rqt_graph_erweitert_2}) wurde ein TF Broadcaster implementiert, welcher die aktuelle Ausrichtung des Drehturm versendet. Nachfolgender Codeauschnitte erläutern wesentliche Elemente. Es werden die Objekte \textit{TransformBroadcaster}, \textit{Transform} und \textit{Quaternion} verwendet, damit eine Bewegung erstellt wird.
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{resources/sourcecode/tf_broadcaster.png}	
+	\includegraphics[width=0.6\textwidth]{resources/sourcecode/tf_broadcaster.png}	
 \end{figure} 
 Wird die aktuelle Position des Motors als Winkel phi übergeben und fortlaufend als Drehung in der Z-Achse (yaw) versendet, lassen sich die Koordinatenachsen verschieben. Da der Velodyne VLP-16 um -90$^\circ$ (270$^\circ$) geneigt ist, wurde die Transformation entsprechend gedreht (roll). Die versendete Transformation besitzt neben aktueller Position, einen Zeitstempel und die betreffenden Koordinatensysteme.
 \begin{figure}[H]
-	\includegraphics[width=0.8\textwidth]{resources/sourcecode/setrotation.png}	
+	\includegraphics[width=0.9\textwidth]{resources/sourcecode/setrotation.png}	
 \end{figure}
 Der Node \textit{/velodyne\_combined} wurde mit einem TF Listener erweitert. Dieser ruft in einer lookup-Funktion die aktuelle Transformation ab und speichert diese in eine Variable.
 \begin{figure}[H]
 	\includegraphics[width=0.7\textwidth]{resources/sourcecode/tf_listener.png}
-	\includegraphics[width=0.7\textwidth]{resources/sourcecode/tf_update.png}		
+	\includegraphics[width=0.9\textwidth]{resources/sourcecode/tf_update.png}		
 
 \end{figure}
 In Abbildung \ref{fig:koordinaten} sind die zwei Koordinatensysteme mit Rviz visualisiert. Die drehende Achse 3d\_turn, die mit der Achse 3d\_base verlinkt ist.
@@ -149,22 +167,34 @@ Während dieser Phase wurde eine \ac{Refactoring} gemacht und eine Klasse SubLis
 	\label{fig:classSubListener}
 \end{figure} 
 
-Die Klasse regelt alle Funktionen für das zusammenfügen der Punktwolken. Auf die detaillierte Erläuterungen wird in diesem Abschnitt verzichtet. 
+Auf eine detaillierte Erläuterung der Funktionen wird in diesem Abschnitt verzichtet. Der nachfolgende Codeausschnitt erläutert konzeptionell der Ablauf, wie das Zusammenfügen der Punktwolke funktioniert. Der Codeauschnitt wird in der \textit{points \_callback} Funktion ausgeführt.
 
-
-
-In Abbildung \ref{fig:pointcloud_test} ist ein zusammengefügte Punktwolke ersichtlich. Durch entsprechende Parameteränderung lässt sich die Abtastung bei gegebener Umdrehungsgeschwindigkeit verändern.
- 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{resources/pointcloud_test.png}
-\caption[Punktwolke einer Person bei Distanz 1m]{Punktwolke einer Person bei Distanz 1m}
-\label{fig:pointcloud_test}
+\includegraphics[width=0.7\textwidth]{resources/sourcecode/combine.png}
 \end{figure}
 
+Mit dem \textit{udpatetf()} werden die aktuellen Positionskoordinaten, wie in Phase zwei erläuter, abgerufen und zwischengespeichert. 	
+Mit einem zusätzlichen Subscriber wird der aktuellen Drehwinkel \textit{angle} als Fliesszahl abgerufen. Diese ermöglichen einerseits den Nullpunkt zu erkennen, damit die Punktwolke nach einer Umdrehung gelöscht werden kann. Es bietet auch die Möglichkeit die Auflösung mittels einem einzigen Parameter \textit{angle\_resolution} zu ändern. Es wurde wegen der Ungenauigkeit der Nachkommastellen des Datentyps ein tolerierbarer Bereich definiert.
+	
+Mit der Funktion \textit{tf2::dotTransform()} lassen sich einzelne Messages mit der aktuellen Transformation zusammensetzen. Dabei muss die zusammengesetzte Messages in eine neue Variable gesichert werden. (hier:  \textit{sensor\_msgs::PointCloud2 part\_cloud\_out}). 
+
+Die zusammengesetzte Variable wird der Funktion \textit{combine(...)} als Parameter übergeben, damit diese der Punktwolke hinzugefügt wird. Um die vollständige Punktwolke zu versenden ist noch eine Datenkonvertierung  nötig, welche die Funktion \textit{conversion()} tätigt.
 
 
-In Abbildung \ref{fig:raumausmessung} ist ein Gesamtbild einer Punktwolke eines Raumes der Grösse 3 m x 15 m x 10m (HxBxT) ersichtlich. Die Abbildung zeigt die 
+\subsection{Anwendung der Software}
+
+In Abbildung \ref{fig:pointcloud_test} ist ein Ausschnitt einer zusammengefügte Punktwolke mit Rviz visualisiert. Dabei wurden eine Umdrehungsgeschwindigkeit des Motors von 5$^\circ$/s gewählt. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{resources/pointcloud_test.png}
+	\caption[Punktwolke einer Person bei Distanz 1m]{Punktwolke einer Person bei Distanz 1m}
+	\label{fig:pointcloud_test}
+\end{figure}
+
+Durch das langsame Verschieben der 16 Laserstrahlen entsteht ein detaillierte Punktwolke, welche die Konturen von Körper sehr deutlich modelliert.  
+
+In Abbildung \ref{fig:raumausmessung} ist das entsprechende Gesamtbild der vorherigen Punktwolke dargestellt. Es handelt sich um einen Raum der Grösse 3 m x 15 m x 10m (HxBxT). 
 
 \begin{figure}[H]
 	\centering
@@ -173,16 +203,10 @@ In Abbildung \ref{fig:raumausmessung} ist ein Gesamtbild einer Punktwolke eines 
 	\label{fig:raumausmessung}
 \end{figure}  
 
-
-
-\subsection {Ansteuerung mittels GPIO}
-\label{subsec:Ansteuerung}
-\todo{gpio nach oben nehmen}
-Wie bereits erwähnt wurde ein Schrittmotor der Marke Trinamic verwendet. Dieser wird über einen Motorentreiber A4988  angesteuert. Der Motorentreiber besitzt 
-
+Die Visualisierung zeigt die Grenzen der Messung sehr deutlich auf. Da in dieser Messung nur aus einen festen Standort gemessen wird, entstehen durch Körper Schattierungen, welche keine Messpunkte zulassen. Denoch entstehen von geeigneten Standorten sehr detaillierte räumliche Aufnahmen. Dabei kann durch die Konfiguration des Sensors während einer halben Umdrehung bereits eine 360$^\circ$ Erkennung stattfinden.
 
 \section{Zwischenfazit}
 \label{sec:ZwischenfazitReal}
-ROS bietet viele Packages und Klassen, welche nützlich für die Softwareimplementation von Koordinatentransformation und Punktwolken sind. Die Freiheit von Open-Source bietet jedoch auch das Problem, dass die Kompatibilität von Packages nicht immer gewährleistet sind.  Anfänglich waren nru wenig Kenntnisse über die Koordinatentransformation vorhanden, daher verzögerte sich diese Softwarephase 2 erheblich. Es mussten einerseits die theoretischen Grundlagen verstanden werden und entsprechende Packages dazu evaluiert werden. Aufgrund z
+ROS bietet viele Packages und Klassen, welche nützlich für die Softwareimplementation von Koordinatentransformation und Punktwolken sind. Die Freiheit von Open-Source bietet jedoch auch das Problem, dass eine Vielzahl an verschieden Klassen mit unterschiedlichen Datentypen vorhanden sind. Die Klassen bieten meist keine generischen Funktionen, daher müssen entsprechende rechenintensive Konvertierungen durchgeführt werden.  Anfänglich waren kaum Kenntnisse über die Koordinatentransformation vorhanden, daher verzögerte sich diese Softwarephase 2 erheblich. Es mussten einerseits die theoretischen Grundlagen verstanden werden und entsprechende Packages dazu evaluiert werden.
 
 
