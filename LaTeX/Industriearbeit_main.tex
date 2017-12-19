@@ -49,11 +49,10 @@
 \fancyhead[L]{\nouppercase{Tabellenverzeichnis}} %Kopfzeile links
 \listoftables \clearpage
 %\lstlistoflistings \clearpage
-
 \fancyhead[L]{\nouppercase{Literaturverzeichnis}} %Kopfzeile links
 %\printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage
 \printbibliography[heading=bibintoc, keyword={online}, title={Literaturverzeichnis}]\clearpage
-\printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
+%\printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
 
 
 \pagenumbering{arabic}
@@ -72,7 +71,10 @@
 %\printglossary[title={Glossar}] \clearpage
 %\printglossary[style=dottedlocations,type=\acronymtype,title={Abkürzungsverzeichnis}] \clearpage
 % Anhang
-\fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
+
+\appendix
+%\fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
+%\fancyhead[L]{\nouppercase{Anhang}} %Kopfzeile links
 \input{chapter/Anhang}
 
 \end{document}

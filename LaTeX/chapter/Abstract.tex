@@ -1,36 +1,29 @@
 \chapter*{Abstract}
 \label{chap:Abstract}
-This documentation is the result of the project Modul PAIND+E1 at the Lucerne School of Engineering and Architecture for the industry partner RUAG AG. 
+This documentation is the result of the project Modul PAIND+E1 at the Lucerne School of Engineering and Architecture for the industry partner RUAG AG. The task was the realisation of a module, that maps the environment and creates a point cloud with the measured data. The 3D-sensor Velodyne VLP-16 is available for this purpose.
 
-The following chapters contain the experiences and results during the project from September to December 2017. It describes the realisation of a 3D laser module prototype, which can map the environment. The main part is subdivided in different phases and reflects the timeline of the Project. 
+The following chapters contain the experiences and results during the project from September to December 2017. State-of-the-art projects have been investigated and compared. After that, components and software for implementation were analysed and evaluated.
 
-The first part is a summary of the results during the research phase. It contains the knowledge about the available 3D sensors, the potential hardware components and the necessary software to implement the solution after the functional specifications. 
+A total of three concepts were elaborated, which have different approaches. The first concept turns the 3D sensor in a wide range of angle, while using servo motors. The two other concepts are based on a endlessly rotating "tower". The idea behind it, are the state-of-the-art projects. The difference between the two concepts is the position of the signal processing unit. In the unrotated version, the unit is below in a static case. Only the 3D-sensor is rotating for mapping. In the other version, the unit in the case is also rotating. Only the interface is static. 
 
-A total of three concepts were elaborated, which have different approaches. The first concept called "platform", which can turn the 3D sensor in a wide range of angle, while using servo motors. This concept was no longer pursue, since the two other concepts were more suitable.
+The realised concept is similar to the unrotated version before. The realisation describes the process, how the case and the electronic parts are assembled. In a separate topic, it describes, how the Software with the Framework ROS is implemented and how it works together with the hardware. 
 
-The two other concepts are based on a endlessly rotating "tower". The idea behind it, are state-of-the-art projects. The difference between the two concepts is the position of the signal processing unit. In the unrotated version, the unit is below in a static case. Only the 3D-sensor is rotating for mapping. In the other version, the unit in the case is also rotating. Only the interface is static. 
+After the realisation the prototype was tested. Because of a few faults and problems, the realised prototype can't satisfy the full requirements.
 
-The main content is about the realised concept, which is similar to the unrotated version before. The realisation phase describes the process, how the case and the electronic parts are assembled. In a separate topic, it describes, how the Software is implemented and how it works together with the hardware. 
-
-After the realisation the prototype is tested. Because of a few faults and problems, the realised prototype can't satisfy the full requirements. 
-
-At the end, a short reflection summarises the biggest challenges during the project and how to solve them. It also reflects the project management and give a little outlook.
-
+Finally, this documentation offers approaches and considerations for creating a working 3D laser module.
 
 \chapter*{Abstract}
+
 Diese Dokumentation ist das Ergebnis des Projektmoduls PAIND+E1 an der Hochschule Luzern Technik und Architektur für den Industriepartner RUAG AG.
 
-Die nachfolgenden Kapitel beinhalten Erfahrungen und Resultate des Projekts, die zwischen September bis Dezember 2017 erarbeitet wurden. Die Dokumentation beschreibt die Realisierung eines Prototyps, mit welchem die Umgebung vermessen und modelliert werden kann. Der Hauptteil wurde in verschiedene Projektphasen unterteilt und gibt den Verlauf des Projekts wieder.
+Die Aufgabe ist die Realisierung eines Moduls, mit dem die Umgebung vermessen und modelliert werden kann. Dazu steht der 3D-Sensor Velodyne VLP-16 zur Verfügung.
 
-Der erste Teil ist eine Zusammenfassung der Ergebnisse aus der Informationsbeschaffung. Es beinhaltet die wesentlichsten Spezifikationen des vorhandenen 3D Sensor, die erforderlichen Hardwarekomponenten, sowie die nötige Software, um eine Lösung nach den Vorgaben zu entwickeln. 
+Die nachfolgenden Kapitel beinhalten Erfahrungen und Resultate des Projekts, die zwischen September bis Dezember 2017 erarbeitet wurden. Dafür wurden State-of-the-Art Projekte untersucht und verglichen. Danach wurden Komponenten und Software für die Realisierung gesucht und evaluiert.
 
-Insgesamt wurden drei Konzepte erstellt. Das erste Konzept "Plattform" kann den 3D Sensor mittels Servomotoren in alle Richtungen neigen. Da sich nachfolgende Konzepte besser eignen, wurde dieses Konzept verworfen. Die zwei anderen Konzepte basieren auf einem endlos drehenden "Turm". Die Idee dazu liefern bestehende State-Of-The-Art Projekte. In der unrotierenden Version dreht sich der 3D Sensor mit dem Turm. Die Signalverarbeitung wird in einem feststehenden Gehäuse unterhalb des Sensors platziert. In der rotierenden Version dreht die gesamte Elektronik mit und nur die Schnittstellen werden unrotierend herausgeführt.
+Insgesamt wurden drei Konzepte erstellt. Das erste Konzept kann den 3D Sensor mittels Servomotoren in alle Richtungen neigen. Die zwei anderen Konzepte basieren auf einem endlos drehenden \glqq Turm\grqq. Die Idee dazu liefern die State-of-the-Art Projekte. In der unrotierenden Version dreht sich der 3D Sensor mit dem Turm. Die Signalverarbeitung wird in einem feststehenden Gehäuse unterhalb des Sensors platziert. In der rotierenden Version dreht die gesamte Elektronik mit und nur die Schnittstellen werden unrotierend herausgeführt.
 
-Es handelt sich hierbei um eine angepasste unrotierende Version. Dabei wird der Bau des Gehäuses und der Einsatz der elektrischen Komponenten, sowie die Implemenation der Software erläutert.
+Das realisierte Konzept ist eine angepasste unrotierende Version. Dabei wird der Bau des Gehäuses und der Einsatz der elektrischen Komponenten, sowie die Implemenation der Software mit dem ROS Framework erläutert.
 
-Danch wurden die Funktionen des Prototyps getestet. Der erarbeite Prototyp konnte wegen einigen Fehler und Problemen die gewünschten Vorgaben nicht erfüllen. Zuletzt gibt eine Reflektion Auskunft über bedeutende Schwierigkeiten und wie sie gelöst wurden. 
+Die Funktionen des Prototyps wurden ausgetestet. Der erarbeite Prototyp konnte wegen einigen Fehler und Problemen die gewünschten Vorgaben nicht erfüllen. 
 
-
-
-
-
+Abschließend bietet diese Dokumentation Ansätze und Überlegungen, um einen funktionsfähigen 3D-Laser-Modul herzustellen.
